@@ -1,0 +1,239 @@
+<!-- Erweiterte Berechnungen Page -->
+<div class="tabs">
+  <button class="tab active" onclick="showTab('erdung')">Erdung</button>
+  <button class="tab" onclick="showTab('kurzschluss')">Kurzschluss</button>
+  <button class="tab" onclick="showTab('trafo')">Trafo</button>
+  <button class="tab" onclick="showTab('kabelgewicht')">Gewicht</button>
+  <button class="tab" onclick="showTab('trasse')">Trasse</button>
+</div>
+
+<!-- Erdung -->
+<div id="erdung" class="content active">
+  <h2>⚡ Erdungswiderstand berechnen</h2>
+  <p style="margin-bottom:20px;color:var(--gray-500)">Nach DIN VDE 0100-540</p>
+  
+  <div class="form-group">
+    <label>Erdungsart</label>
+    <select id="erdung-art">
+      <option value="stab">Tiefenerder (Staberder)</option>
+      <option value="ring">Ringerder / Fundamenterder</option>
+      <option value="band">Banderder horizontal</option>
+    </select>
+  </div>
+  
+  <div class="form-group">
+    <label>Länge des Erders (m)</label>
+    <input type="number" id="erdung-laenge" placeholder="z.B. 2.5" step="0.1">
+  </div>
+  
+  <div class="form-group">
+    <label>Durchmesser (mm)</label>
+    <input type="number" id="erdung-durchmesser" value="20" placeholder="z.B. 20">
+  </div>
+  
+  <div class="form-group">
+    <label>Spezifischer Bodenwiderstand ρE (Ωm)</label>
+    <select id="erdung-boden">
+      <option value="30">Moorerde, Sumpf (30 Ωm)</option>
+      <option value="50">Torf, feuchter Humus (50 Ωm)</option>
+      <option value="100" selected>Feuchter Lehm, Ton (100 Ωm)</option>
+      <option value="200">Lehm, Ackerboden (200 Ωm)</option>
+      <option value="500">Feuchter Sand (500 Ωm)</option>
+      <option value="1000">Trockener Sand (1000 Ωm)</option>
+      <option value="2000">Kies (2000 Ωm)</option>
+      <option value="3000">Steiniger Boden (3000 Ωm)</option>
+    </select>
+  </div>
+  
+  <button class="btn" onclick="calculateEarthing()">Berechnen</button>
+  <div id="erdung-result"></div>
+  
+  <div class="info-box">
+    <h4>📌 Grenzwerte</h4>
+    <ul>
+      <li><strong>TN-System:</strong> RA ≤ 2 Ω empfohlen</li>
+      <li><strong>TT-System:</strong> RA × IΔn ≤ 50V</li>
+      <li><strong>Blitzschutz:</strong> RA ≤ 10 Ω</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Kurzschluss -->
+<div id="kurzschluss" class="content">
+  <h2>⚡ Kurzschlussstrom berechnen</h2>
+  <p style="margin-bottom:20px;color:var(--gray-500)">Für Selektivität und Schaltvermögen</p>
+  
+  <div class="form-group">
+    <label>Trafoleistung (kVA)</label>
+    <input type="number" id="kss-trafo" placeholder="z.B. 630">
+  </div>
+  
+  <div class="form-group">
+    <label>Trafo Kurzschlussspannung uk (%)</label>
+    <input type="number" id="kss-uk" value="4" step="0.1">
+  </div>
+  
+  <div class="form-group">
+    <label>Sekundärspannung (V)</label>
+    <select id="kss-spannung">
+      <option value="400" selected>400 V (Drehstrom)</option>
+      <option value="230">230 V (Einphasig)</option>
+    </select>
+  </div>
+  
+  <div class="form-group">
+    <label>Leitungslänge vom Trafo (m)</label>
+    <input type="number" id="kss-laenge" placeholder="z.B. 50">
+  </div>
+  
+  <div class="form-group">
+    <label>Leitungsquerschnitt (mm²)</label>
+    <select id="kss-querschnitt">
+      <option value="16">16 mm²</option>
+      <option value="25">25 mm²</option>
+      <option value="35">35 mm²</option>
+      <option value="50" selected>50 mm²</option>
+      <option value="70">70 mm²</option>
+      <option value="95">95 mm²</option>
+      <option value="120">120 mm²</option>
+      <option value="150">150 mm²</option>
+      <option value="185">185 mm²</option>
+      <option value="240">240 mm²</option>
+    </select>
+  </div>
+  
+  <div class="form-group">
+    <label>Material</label>
+    <select id="kss-material">
+      <option value="cu">Kupfer</option>
+      <option value="al">Aluminium</option>
+    </select>
+  </div>
+  
+  <button class="btn" onclick="calculateShortCircuit()">Berechnen</button>
+  <div id="kss-result"></div>
+</div>
+
+<!-- Trafo -->
+<div id="trafo" class="content">
+  <h2>🔄 Trafo dimensionieren</h2>
+  
+  <div class="form-group">
+    <label>Gesamtleistung aller Verbraucher (kW)</label>
+    <input type="number" id="trafo-leistung" placeholder="z.B. 450">
+  </div>
+  
+  <div class="form-group">
+    <label>Gleichzeitigkeitsfaktor g</label>
+    <select id="trafo-gleich">
+      <option value="0.5">0,5 (Wohngebäude groß)</option>
+      <option value="0.6" selected>0,6 (Wohngebäude Standard)</option>
+      <option value="0.7">0,7 (Bürogebäude)</option>
+      <option value="0.8">0,8 (Gewerbe gemischt)</option>
+      <option value="0.9">0,9 (Industrie)</option>
+      <option value="1.0">1,0 (Volllast / kritisch)</option>
+    </select>
+  </div>
+  
+  <div class="form-group">
+    <label>Leistungsfaktor cos φ</label>
+    <input type="number" id="trafo-cosphi" value="0.9" step="0.01" min="0.7" max="1">
+  </div>
+  
+  <div class="form-group">
+    <label>Reserve für Erweiterung (%)</label>
+    <select id="trafo-reserve">
+      <option value="0">0% (keine Reserve)</option>
+      <option value="20" selected>20% (Standard)</option>
+      <option value="30">30% (geplante Erweiterung)</option>
+      <option value="50">50% (große Reserve)</option>
+    </select>
+  </div>
+  
+  <button class="btn" onclick="calculateTransformer()">Berechnen</button>
+  <div id="trafo-result"></div>
+  
+  <div class="info-box">
+    <h4>📌 Standard-Trafogrößen (kVA)</h4>
+    <p>100, 160, 250, 315, 400, 500, 630, 800, 1000, 1250, 1600, 2000, 2500</p>
+  </div>
+</div>
+
+<!-- Kabelgewicht -->
+<div id="kabelgewicht" class="content">
+  <h2>⚖️ Kabelgewicht berechnen</h2>
+  
+  <div class="form-group">
+    <label>Kabeltyp</label>
+    <select id="gewicht-typ">
+      <option value="nym">NYM-J (Mantelleitung)</option>
+      <option value="nyy">NYY-J (Erdkabel)</option>
+    </select>
+  </div>
+  
+  <div class="form-group">
+    <label>Querschnitt (mm²)</label>
+    <select id="gewicht-querschnitt">
+      <option value="1.5">1,5 mm²</option>
+      <option value="2.5" selected>2,5 mm²</option>
+      <option value="4">4 mm²</option>
+      <option value="6">6 mm²</option>
+      <option value="10">10 mm²</option>
+      <option value="16">16 mm²</option>
+      <option value="25">25 mm²</option>
+      <option value="35">35 mm²</option>
+      <option value="50">50 mm²</option>
+    </select>
+  </div>
+  
+  <div class="form-group">
+    <label>Anzahl Adern</label>
+    <select id="gewicht-adern">
+      <option value="3">3-adrig</option>
+      <option value="4">4-adrig</option>
+      <option value="5" selected>5-adrig</option>
+    </select>
+  </div>
+  
+  <div class="form-group">
+    <label>Kabellänge (m)</label>
+    <input type="number" id="gewicht-laenge" value="100" placeholder="z.B. 100">
+  </div>
+  
+  <button class="btn" onclick="calculateCableWeight()">Berechnen</button>
+  <div id="gewicht-result"></div>
+</div>
+
+<!-- Trasse -->
+<div id="trasse" class="content">
+  <h2>📐 Kabeltrasse dimensionieren</h2>
+  
+  <div class="form-group">
+    <label>Anzahl der Kabel</label>
+    <input type="number" id="trasse-anzahl" placeholder="z.B. 12">
+  </div>
+  
+  <div class="form-group">
+    <label>Mittlerer Kabeldurchmesser (mm)</label>
+    <input type="number" id="trasse-durchmesser" placeholder="z.B. 15">
+  </div>
+  
+  <div class="form-group">
+    <label>Maximaler Füllgrad (%)</label>
+    <select id="trasse-fuellgrad">
+      <option value="35">35% (optimal, viel Reserve)</option>
+      <option value="40" selected>40% (empfohlen)</option>
+      <option value="50">50% (Standard)</option>
+      <option value="60">60% (Maximum)</option>
+    </select>
+  </div>
+  
+  <button class="btn" onclick="calculateTray()">Berechnen</button>
+  <div id="trasse-result"></div>
+  
+  <div class="info-box">
+    <h4>📌 Standard-Trassenbreiten (mm)</h4>
+    <p>50, 75, 100, 150, 200, 300, 400, 500, 600</p>
+    <p style="margin-top:8px"><strong>Tipp:</strong> Füllgrad max. 40-50% für Wärmeabfuhr und Nachbelegung!</p>
+  </div>
+</div>

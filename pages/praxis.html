@@ -1,0 +1,391 @@
+<!-- Praxis Page -->
+<div class="tabs">
+  <button class="tab active" onclick="showTab('symbole-install')">Installation</button>
+  <button class="tab" onclick="showTab('symbole-schalt')">Schaltplan</button>
+  <button class="tab" onclick="showTab('drehmoment')">Drehmoment</button>
+  <button class="tab" onclick="showTab('biegeradius')">Biegeradien</button>
+  <button class="tab" onclick="showTab('sicherungsfarben')">Farben</button>
+</div>
+
+<!-- Installationssymbole -->
+<div id="symbole-install" class="content active">
+  <h2>🏠 Installationssymbole</h2>
+  <p style="margin-bottom:15px;color:var(--gray-500)">Nach DIN 18015 für Installationspläne</p>
+  
+  <div class="symbol-grid">
+    <div class="symbol-card">
+      <div class="symbol-svg">
+        <svg viewBox="0 0 60 60" width="55" height="55">
+          <path d="M 15 30 A 15 15 0 0 1 45 30" fill="none" stroke="#1e40af" stroke-width="2"/>
+          <line x1="25" y1="30" x2="25" y2="18" stroke="#1e40af" stroke-width="2"/>
+          <line x1="35" y1="30" x2="35" y2="18" stroke="#1e40af" stroke-width="2"/>
+          <line x1="30" y1="30" x2="30" y2="45" stroke="#1e40af" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="symbol-name">Steckdose</div>
+    </div>
+    
+    <div class="symbol-card">
+      <div class="symbol-svg">
+        <svg viewBox="0 0 60 60" width="55" height="55">
+          <circle cx="30" cy="30" r="12" fill="none" stroke="#1e40af" stroke-width="2"/>
+          <line x1="30" y1="22" x2="30" y2="30" stroke="#1e40af" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="symbol-name">Ausschalter</div>
+    </div>
+    
+    <div class="symbol-card">
+      <div class="symbol-svg">
+        <svg viewBox="0 0 60 60" width="55" height="55">
+          <circle cx="30" cy="30" r="12" fill="none" stroke="#1e40af" stroke-width="2"/>
+          <line x1="30" y1="22" x2="30" y2="30" stroke="#1e40af" stroke-width="2"/>
+          <line x1="30" y1="30" x2="38" y2="22" stroke="#1e40af" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="symbol-name">Wechselschalter</div>
+    </div>
+    
+    <div class="symbol-card">
+      <div class="symbol-svg">
+        <svg viewBox="0 0 60 60" width="55" height="55">
+          <circle cx="30" cy="30" r="12" fill="none" stroke="#1e40af" stroke-width="2"/>
+          <line x1="30" y1="22" x2="30" y2="30" stroke="#1e40af" stroke-width="2"/>
+          <line x1="30" y1="30" x2="38" y2="22" stroke="#1e40af" stroke-width="2"/>
+          <line x1="30" y1="30" x2="38" y2="38" stroke="#1e40af" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="symbol-name">Kreuzschalter</div>
+    </div>
+    
+    <div class="symbol-card">
+      <div class="symbol-svg">
+        <svg viewBox="0 0 60 60" width="55" height="55">
+          <circle cx="30" cy="30" r="12" fill="none" stroke="#1e40af" stroke-width="2"/>
+          <circle cx="30" cy="30" r="5" fill="#1e40af"/>
+        </svg>
+      </div>
+      <div class="symbol-name">Taster</div>
+    </div>
+    
+    <div class="symbol-card">
+      <div class="symbol-svg">
+        <svg viewBox="0 0 60 60" width="55" height="55">
+          <line x1="20" y1="20" x2="40" y2="40" stroke="#1e40af" stroke-width="2.5"/>
+          <line x1="40" y1="20" x2="20" y2="40" stroke="#1e40af" stroke-width="2.5"/>
+        </svg>
+      </div>
+      <div class="symbol-name">Deckenleuchte</div>
+    </div>
+    
+    <div class="symbol-card">
+      <div class="symbol-svg">
+        <svg viewBox="0 0 60 60" width="55" height="55">
+          <circle cx="30" cy="30" r="12" fill="none" stroke="#1e40af" stroke-width="2"/>
+          <line x1="22" y1="22" x2="38" y2="38" stroke="#1e40af" stroke-width="2"/>
+          <line x1="38" y1="22" x2="22" y2="38" stroke="#1e40af" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="symbol-name">Einbauleuchte</div>
+    </div>
+    
+    <div class="symbol-card">
+      <div class="symbol-svg">
+        <svg viewBox="0 0 60 60" width="55" height="55">
+          <rect x="18" y="22" width="24" height="16" fill="none" stroke="#1e40af" stroke-width="2"/>
+          <line x1="22" y1="38" x2="38" y2="22" stroke="#1e40af" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="symbol-name">LSS (Automat)</div>
+    </div>
+    
+    <div class="symbol-card">
+      <div class="symbol-svg">
+        <svg viewBox="0 0 60 60" width="55" height="55">
+          <rect x="18" y="22" width="24" height="16" fill="none" stroke="#1e40af" stroke-width="2"/>
+          <line x1="22" y1="38" x2="30" y2="22" stroke="#1e40af" stroke-width="2"/>
+          <line x1="30" y1="38" x2="38" y2="22" stroke="#1e40af" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="symbol-name">FI (RCD)</div>
+    </div>
+    
+    <div class="symbol-card">
+      <div class="symbol-svg">
+        <svg viewBox="0 0 60 60" width="55" height="55">
+          <rect x="18" y="18" width="24" height="24" fill="none" stroke="#1e40af" stroke-width="2"/>
+          <circle cx="24" cy="26" r="3" fill="#1e40af"/>
+          <circle cx="36" cy="26" r="3" fill="#1e40af"/>
+          <circle cx="24" cy="36" r="3" fill="#1e40af"/>
+          <circle cx="36" cy="36" r="3" fill="#1e40af"/>
+        </svg>
+      </div>
+      <div class="symbol-name">Herd</div>
+    </div>
+    
+    <div class="symbol-card">
+      <div class="symbol-svg">
+        <svg viewBox="0 0 60 60" width="55" height="55">
+          <rect x="18" y="18" width="24" height="24" fill="none" stroke="#1e40af" stroke-width="2"/>
+          <circle cx="30" cy="30" r="8" fill="none" stroke="#1e40af" stroke-width="1.5"/>
+          <circle cx="30" cy="30" r="3" fill="#1e40af"/>
+        </svg>
+      </div>
+      <div class="symbol-name">Waschmaschine</div>
+    </div>
+    
+    <div class="symbol-card">
+      <div class="symbol-svg">
+        <svg viewBox="0 0 60 60" width="55" height="55">
+          <line x1="30" y1="12" x2="30" y2="22" stroke="#1e40af" stroke-width="2"/>
+          <line x1="18" y1="22" x2="42" y2="22" stroke="#1e40af" stroke-width="3"/>
+          <line x1="22" y1="28" x2="38" y2="28" stroke="#1e40af" stroke-width="2.5"/>
+          <line x1="25" y1="34" x2="35" y2="34" stroke="#1e40af" stroke-width="2"/>
+          <line x1="28" y1="40" x2="32" y2="40" stroke="#1e40af" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <div class="symbol-name">Erdung / PE</div>
+    </div>
+  </div>
+</div>
+
+<!-- Schaltplansymbole -->
+<div id="symbole-schalt" class="content">
+  <h2>📐 Schaltplansymbole</h2>
+  <p style="margin-bottom:15px;color:var(--gray-500)">Nach DIN EN 60617</p>
+  
+  <div class="symbol-grid">
+    <div class="symbol-card">
+      <div class="symbol-svg">
+        <svg viewBox="0 0 60 50" width="55" height="45">
+          <circle cx="30" cy="25" r="14" fill="none" stroke="#1e40af" stroke-width="2"/>
+          <text x="30" y="31" text-anchor="middle" font-size="15" fill="#1e40af" font-weight="bold">M</text>
+        </svg>
+      </div>
+      <div class="symbol-name">Motor</div>
+    </div>
+    
+    <div class="symbol-card">
+      <div class="symbol-svg">
+        <svg viewBox="0 0 60 40" width="55" height="35">
+          <line x1="5" y1="20" x2="15" y2="20" stroke="#1e40af" stroke-width="2"/>
+          <rect x="15" y="14" width="30" height="12" fill="none" stroke="#1e40af" stroke-width="2"/>
+          <line x1="45" y1="20" x2="55" y2="20" stroke="#1e40af" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="symbol-name">Widerstand</div>
+    </div>
+    
+    <div class="symbol-card">
+      <div class="symbol-svg">
+        <svg viewBox="0 0 60 40" width="55" height="35">
+          <line x1="5" y1="20" x2="25" y2="20" stroke="#1e40af" stroke-width="2"/>
+          <line x1="25" y1="10" x2="25" y2="30" stroke="#1e40af" stroke-width="2"/>
+          <line x1="30" y1="10" x2="30" y2="30" stroke="#1e40af" stroke-width="2"/>
+          <line x1="30" y1="20" x2="55" y2="20" stroke="#1e40af" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="symbol-name">Kondensator</div>
+    </div>
+    
+    <div class="symbol-card">
+      <div class="symbol-svg">
+        <svg viewBox="0 0 60 40" width="55" height="35">
+          <line x1="5" y1="20" x2="20" y2="20" stroke="#1e40af" stroke-width="2"/>
+          <polygon points="20,10 20,30 40,20" fill="none" stroke="#1e40af" stroke-width="2"/>
+          <line x1="40" y1="10" x2="40" y2="30" stroke="#1e40af" stroke-width="2"/>
+          <line x1="40" y1="20" x2="55" y2="20" stroke="#1e40af" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="symbol-name">Diode</div>
+    </div>
+    
+    <div class="symbol-card">
+      <div class="symbol-svg">
+        <svg viewBox="0 0 60 40" width="55" height="35">
+          <line x1="5" y1="20" x2="12" y2="20" stroke="#1e40af" stroke-width="2"/>
+          <path d="M 12 20 A 5 5 0 0 1 22 20 A 5 5 0 0 1 32 20 A 5 5 0 0 1 42 20" fill="none" stroke="#1e40af" stroke-width="2"/>
+          <line x1="42" y1="20" x2="55" y2="20" stroke="#1e40af" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="symbol-name">Spule</div>
+    </div>
+    
+    <div class="symbol-card">
+      <div class="symbol-svg">
+        <svg viewBox="0 0 60 40" width="55" height="35">
+          <line x1="5" y1="25" x2="20" y2="25" stroke="#1e40af" stroke-width="2"/>
+          <circle cx="20" cy="25" r="3" fill="#1e40af"/>
+          <line x1="20" y1="25" x2="40" y2="12" stroke="#1e40af" stroke-width="2"/>
+          <circle cx="43" cy="12" r="3" fill="none" stroke="#1e40af" stroke-width="2"/>
+          <line x1="46" y1="12" x2="55" y2="12" stroke="#1e40af" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="symbol-name">Schalter</div>
+    </div>
+    
+    <div class="symbol-card">
+      <div class="symbol-svg">
+        <svg viewBox="0 0 60 50" width="55" height="45">
+          <circle cx="30" cy="25" r="12" fill="none" stroke="#1e40af" stroke-width="2"/>
+          <text x="30" y="30" text-anchor="middle" font-size="13" fill="#1e40af" font-weight="bold">A</text>
+        </svg>
+      </div>
+      <div class="symbol-name">Amperemeter</div>
+    </div>
+    
+    <div class="symbol-card">
+      <div class="symbol-svg">
+        <svg viewBox="0 0 60 50" width="55" height="45">
+          <circle cx="30" cy="25" r="12" fill="none" stroke="#1e40af" stroke-width="2"/>
+          <text x="30" y="30" text-anchor="middle" font-size="13" fill="#1e40af" font-weight="bold">V</text>
+        </svg>
+      </div>
+      <div class="symbol-name">Voltmeter</div>
+    </div>
+    
+    <div class="symbol-card">
+      <div class="symbol-svg">
+        <svg viewBox="0 0 60 50" width="55" height="45">
+          <circle cx="30" cy="25" r="12" fill="none" stroke="#1e40af" stroke-width="2"/>
+          <line x1="22" y1="17" x2="38" y2="33" stroke="#1e40af" stroke-width="2"/>
+          <line x1="38" y1="17" x2="22" y2="33" stroke="#1e40af" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="symbol-name">Lampe</div>
+    </div>
+    
+    <div class="symbol-card">
+      <div class="symbol-svg">
+        <svg viewBox="0 0 60 50" width="55" height="45">
+          <rect x="15" y="15" width="30" height="20" fill="none" stroke="#1e40af" stroke-width="2"/>
+          <text x="30" y="29" text-anchor="middle" font-size="11" fill="#1e40af" font-weight="bold">&amp;</text>
+        </svg>
+      </div>
+      <div class="symbol-name">AND-Gatter</div>
+    </div>
+    
+    <div class="symbol-card">
+      <div class="symbol-svg">
+        <svg viewBox="0 0 60 50" width="55" height="45">
+          <rect x="15" y="15" width="30" height="20" fill="none" stroke="#1e40af" stroke-width="2"/>
+          <text x="30" y="29" text-anchor="middle" font-size="10" fill="#1e40af" font-weight="bold">≥1</text>
+        </svg>
+      </div>
+      <div class="symbol-name">OR-Gatter</div>
+    </div>
+    
+    <div class="symbol-card">
+      <div class="symbol-svg">
+        <svg viewBox="0 0 60 40" width="55" height="35">
+          <line x1="30" y1="5" x2="30" y2="15" stroke="#1e40af" stroke-width="2"/>
+          <line x1="20" y1="15" x2="40" y2="15" stroke="#1e40af" stroke-width="3"/>
+          <line x1="23" y1="20" x2="37" y2="20" stroke="#1e40af" stroke-width="2.5"/>
+          <line x1="26" y1="25" x2="34" y2="25" stroke="#1e40af" stroke-width="2"/>
+          <line x1="28" y1="30" x2="32" y2="30" stroke="#1e40af" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <div class="symbol-name">Erde / Masse</div>
+    </div>
+  </div>
+  
+  <div class="info-box" style="margin-top:20px">
+    <h4>📚 Kennbuchstaben (DIN EN 81346)</h4>
+    <p><strong>M</strong>=Motor, <strong>K</strong>=Relais/Schütz, <strong>Q</strong>=Schalter, <strong>F</strong>=Sicherung, <strong>T</strong>=Trafo, <strong>R</strong>=Widerstand, <strong>C</strong>=Kondensator, <strong>H</strong>=Signalgeber</p>
+  </div>
+</div>
+
+<!-- Drehmoment -->
+<div id="drehmoment" class="content">
+  <h2>🔧 Anzugsdrehmomente</h2>
+  <p style="margin-bottom:15px;color:var(--gray-500)">Richtwerte nach VDE</p>
+  
+  <div class="table-responsive">
+    <table>
+      <thead>
+        <tr><th>Querschnitt</th><th>Ringkabelschuh</th><th>Reihenklemme</th><th>LSS/FI</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1,5 mm²</td><td>1,2 Nm</td><td>0,5 Nm</td><td>1,5 Nm</td></tr>
+        <tr><td>2,5 mm²</td><td>1,8 Nm</td><td>0,8 Nm</td><td>2,0 Nm</td></tr>
+        <tr><td>4 mm²</td><td>2,5 Nm</td><td>1,2 Nm</td><td>2,5 Nm</td></tr>
+        <tr><td>6 mm²</td><td>3,5 Nm</td><td>1,5 Nm</td><td>3,0 Nm</td></tr>
+        <tr><td>10 mm²</td><td>5,0 Nm</td><td>2,5 Nm</td><td>4,0 Nm</td></tr>
+        <tr><td>16 mm²</td><td>7,0 Nm</td><td>3,5 Nm</td><td>6,0 Nm</td></tr>
+        <tr><td>25 mm²</td><td>10 Nm</td><td>5,0 Nm</td><td>9,0 Nm</td></tr>
+        <tr><td>35 mm²</td><td>15 Nm</td><td>7,0 Nm</td><td>12 Nm</td></tr>
+        <tr><td>50 mm²</td><td>20 Nm</td><td>10 Nm</td><td>18 Nm</td></tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="warning">
+    <p>⚠️ Herstellerangaben haben Vorrang!</p>
+  </div>
+</div>
+
+<!-- Biegeradien -->
+<div id="biegeradius" class="content">
+  <h2>📐 Minimale Biegeradien</h2>
+  
+  <div class="table-responsive">
+    <table>
+      <thead>
+        <tr><th>Kabeltyp</th><th>Ø bis 20mm</th><th>Ø 20-40mm</th><th>Ø >40mm</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>NYM-J</strong></td><td>4× Ø</td><td>5× Ø</td><td>6× Ø</td></tr>
+        <tr><td><strong>NYY-J</strong></td><td>6× Ø</td><td>8× Ø</td><td>10× Ø</td></tr>
+        <tr><td><strong>H07RN-F</strong></td><td>3× Ø</td><td>4× Ø</td><td>5× Ø</td></tr>
+        <tr><td><strong>Cat.6/7</strong></td><td>4× Ø (min. 25mm)</td><td>-</td><td>-</td></tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="info-box">
+    <h4>📏 Beispiel</h4>
+    <p>NYM 5×2,5mm² (Ø ~12mm): Min. Radius = 4 × 12mm = <strong>48mm</strong></p>
+  </div>
+  
+  <div class="danger">
+    <p>⚠️ Unterschreitung → Isolierung kann brechen → Brandgefahr!</p>
+  </div>
+</div>
+
+<!-- Sicherungsfarben -->
+<div id="sicherungsfarben" class="content">
+  <h2>🎨 Sicherungsfarben</h2>
+  <p style="margin-bottom:15px;color:var(--gray-500)">Nach DIN 49360</p>
+  
+  <div class="table-responsive">
+    <table>
+      <thead>
+        <tr><th>Nennstrom</th><th>Farbe</th><th></th></tr>
+      </thead>
+      <tbody>
+        <tr><td>2 A</td><td>Rosa</td><td><span class="fuse-color" style="background:#ffb6c1"></span></td></tr>
+        <tr><td>4 A</td><td>Braun</td><td><span class="fuse-color" style="background:#8b4513"></span></td></tr>
+        <tr><td>6 A</td><td>Grün</td><td><span class="fuse-color" style="background:#228b22"></span></td></tr>
+        <tr><td>10 A</td><td>Rot</td><td><span class="fuse-color" style="background:#dc143c"></span></td></tr>
+        <tr><td>16 A</td><td>Grau</td><td><span class="fuse-color" style="background:#808080"></span></td></tr>
+        <tr><td>20 A</td><td>Blau</td><td><span class="fuse-color" style="background:#4169e1"></span></td></tr>
+        <tr><td>25 A</td><td>Gelb</td><td><span class="fuse-color" style="background:#ffd700"></span></td></tr>
+        <tr><td>32 A</td><td>Schwarz</td><td><span class="fuse-color" style="background:#000000"></span></td></tr>
+        <tr><td>40 A</td><td>Orange</td><td><span class="fuse-color" style="background:#ff8c00"></span></td></tr>
+        <tr><td>50 A</td><td>Weiß</td><td><span class="fuse-color" style="background:#ffffff"></span></td></tr>
+        <tr><td>63 A</td><td>Kupfer</td><td><span class="fuse-color" style="background:#b87333"></span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="info-box">
+    <h4>🔌 Leiterfarben (DIN VDE 0100)</h4>
+    <ul>
+      <li><strong style="color:#228b22">●</strong> <strong>Grün-Gelb:</strong> Schutzleiter (PE)</li>
+      <li><strong style="color:#4169e1">●</strong> <strong>Blau:</strong> Neutralleiter (N)</li>
+      <li><strong style="color:#8b4513">●</strong> <strong>Braun:</strong> L1 (Phase)</li>
+      <li><strong style="color:#000000">●</strong> <strong>Schwarz:</strong> L2</li>
+      <li><strong style="color:#808080">●</strong> <strong>Grau:</strong> L3</li>
+    </ul>
+  </div>
+</div>

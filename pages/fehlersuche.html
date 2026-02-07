@@ -1,0 +1,102 @@
+<!-- Fehlersuche Page -->
+<h2>🔍 Fehlersuche-Assistent</h2>
+<p style="margin-bottom:15px;color:var(--gray-500)">Klicke auf das Problem für Lösungsvorschläge</p>
+
+<div class="troubleshoot-grid">
+  <div class="troubleshoot-card" onclick="toggleTroubleshoot(this)">
+    <h4>⚡ FI-Schutzschalter löst aus</h4>
+    <p style="color:var(--gray-500);font-size:13px">RCD löst immer wieder aus</p>
+    <div class="troubleshoot-solutions">
+      <ul>
+        <li><strong>Fehler im Verbraucher:</strong> Geräte einzeln testen</li>
+        <li><strong>Feuchtigkeit:</strong> Steckdosen im Bad, Keller prüfen</li>
+        <li><strong>Beschädigte Leitung:</strong> Isolationsmessung (min. 1 MΩ)</li>
+        <li><strong>Summenstrom:</strong> Viele alte Geräte → Ableitströme addieren</li>
+        <li><strong>FI defekt:</strong> Mit Prüftaste testen</li>
+        <li><strong>N-PE Verbindung:</strong> Unerlaubte Verbindung nach FI</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="troubleshoot-card" onclick="toggleTroubleshoot(this)">
+    <h4>🔌 Steckdose ohne Strom</h4>
+    <p style="color:var(--gray-500);font-size:13px">Keine Spannung</p>
+    <div class="troubleshoot-solutions">
+      <ul>
+        <li><strong>Sicherung:</strong> LSS oder FI ausgelöst?</li>
+        <li><strong>Lose Klemme:</strong> Kontakte in Dose prüfen</li>
+        <li><strong>Leitungsunterbrechung:</strong> Durchgangsprüfung</li>
+        <li><strong>Falscher Stromkreis:</strong> Alle Sicherungen prüfen</li>
+        <li><strong>Steckdose defekt:</strong> Spannung an Zuleitung messen</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="troubleshoot-card" onclick="toggleTroubleshoot(this)">
+    <h4>💡 Licht funktioniert nicht</h4>
+    <p style="color:var(--gray-500);font-size:13px">Leuchte bleibt dunkel</p>
+    <div class="troubleshoot-solutions">
+      <ul>
+        <li><strong>Leuchtmittel:</strong> Defekt? → Austauschen</li>
+        <li><strong>Schalter:</strong> Kontakte prüfen</li>
+        <li><strong>Sicherung:</strong> Beleuchtungsstromkreis prüfen</li>
+        <li><strong>Klemmen:</strong> Lose Verbindungen</li>
+        <li><strong>Vorschaltgerät:</strong> Bei LED/Leuchtstoff EVG prüfen</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="troubleshoot-card" onclick="toggleTroubleshoot(this)">
+    <h4>💫 Licht flackert</h4>
+    <p style="color:var(--gray-500);font-size:13px">Unruhiges Licht</p>
+    <div class="troubleshoot-solutions">
+      <ul>
+        <li><strong>Wackelkontakt:</strong> Lose Klemme in Verteilung/Dose</li>
+        <li><strong>Spannungsfall:</strong> Leitung zu dünn oder zu lang</li>
+        <li><strong>N unterbrochen:</strong> Nullleiter-Problem</li>
+        <li><strong>LED-Treiber:</strong> Minderwertiges EVG</li>
+        <li><strong>Dimmer:</strong> Nicht kompatibel mit LED?</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="troubleshoot-card" onclick="toggleTroubleshoot(this)">
+    <h4>🌡️ Kabel/Verteiler heiß</h4>
+    <p style="color:var(--gray-500);font-size:13px">Überhitzung</p>
+    <div class="troubleshoot-solutions">
+      <ul>
+        <li><strong>Überlast:</strong> Zu hoher Strom für Querschnitt</li>
+        <li><strong>Lose Klemme:</strong> Übergangswiderstand → Wärme</li>
+        <li><strong>Falscher Querschnitt:</strong> 1,5mm² auf 16A?</li>
+        <li><strong>Häufung:</strong> Zu viele Kabel gebündelt</li>
+        <li>⚠️ <strong>BRANDGEFAHR:</strong> Sofort Last reduzieren!</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="troubleshoot-card" onclick="toggleTroubleshoot(this)">
+    <h4>📉 Niedriger Isolationswiderstand</h4>
+    <p style="color:var(--gray-500);font-size:13px">Messwert unter 1 MΩ</p>
+    <div class="troubleshoot-solutions">
+      <ul>
+        <li><strong>Feuchtigkeit:</strong> In Dosen, Kabelkanälen</li>
+        <li><strong>Beschädigte Isolierung:</strong> Nagel/Schraube durch Kabel</li>
+        <li><strong>Alter:</strong> Isolierung versprödet</li>
+        <li><strong>Verschmutzung:</strong> Leitende Ablagerungen</li>
+        <li><strong>Abschnittsweise messen:</strong> Fehler eingrenzen</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="danger" style="margin-top:25px">
+  <h4>⚠️ SICHERHEITSHINWEIS</h4>
+  <p>Arbeiten an elektrischen Anlagen nur durch Elektrofachkräfte! Die 5 Sicherheitsregeln beachten:</p>
+  <ol style="margin-left:20px;margin-top:10px">
+    <li>Freischalten</li>
+    <li>Gegen Wiedereinschalten sichern</li>
+    <li>Spannungsfreiheit feststellen</li>
+    <li>Erden und Kurzschließen</li>
+    <li>Benachbarte Teile abdecken</li>
+  </ol>
+</div>

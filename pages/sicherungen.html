@@ -1,0 +1,590 @@
+<!-- Sicherungen - Farben, Charakteristik, NH-Größen -->
+<div class="tab-container">
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab(this, 'tab-farben')">Farben</button>
+    <button class="tab" onclick="switchTab(this, 'tab-lss')">Auslösecharakteristik</button>
+    <button class="tab" onclick="switchTab(this, 'tab-nh')">NH-Sicherungen</button>
+    <button class="tab" onclick="switchTab(this, 'tab-diazed')">DIAZED/NEOZED</button>
+  </div>
+
+  <!-- SICHERUNGSFARBEN -->
+  <div id="tab-farben" class="tab-content active">
+    <h2>Sicherungsfarben nach DIN 49360</h2>
+    <p class="info-text">Farbkennzeichnung für Schmelzsicherungen</p>
+    
+    <div class="fuse-grid">
+      <div class="fuse-card" style="--fuse-color: #FFB6C1;">
+        <div class="fuse-color"></div>
+        <div class="fuse-info">
+          <span class="fuse-ampere">2 A</span>
+          <span class="fuse-name">Rosa</span>
+        </div>
+      </div>
+      
+      <div class="fuse-card" style="--fuse-color: #D2691E;">
+        <div class="fuse-color"></div>
+        <div class="fuse-info">
+          <span class="fuse-ampere">4 A</span>
+          <span class="fuse-name">Braun</span>
+        </div>
+      </div>
+      
+      <div class="fuse-card" style="--fuse-color: #32CD32;">
+        <div class="fuse-color"></div>
+        <div class="fuse-info">
+          <span class="fuse-ampere">6 A</span>
+          <span class="fuse-name">Grün</span>
+        </div>
+      </div>
+      
+      <div class="fuse-card" style="--fuse-color: #FF0000;">
+        <div class="fuse-color"></div>
+        <div class="fuse-info">
+          <span class="fuse-ampere">10 A</span>
+          <span class="fuse-name">Rot</span>
+        </div>
+      </div>
+      
+      <div class="fuse-card" style="--fuse-color: #808080;">
+        <div class="fuse-color"></div>
+        <div class="fuse-info">
+          <span class="fuse-ampere">16 A</span>
+          <span class="fuse-name">Grau</span>
+        </div>
+      </div>
+      
+      <div class="fuse-card" style="--fuse-color: #4169E1;">
+        <div class="fuse-color"></div>
+        <div class="fuse-info">
+          <span class="fuse-ampere">20 A</span>
+          <span class="fuse-name">Blau</span>
+        </div>
+      </div>
+      
+      <div class="fuse-card" style="--fuse-color: #FFD700;">
+        <div class="fuse-color"></div>
+        <div class="fuse-info">
+          <span class="fuse-ampere">25 A</span>
+          <span class="fuse-name">Gelb</span>
+        </div>
+      </div>
+      
+      <div class="fuse-card" style="--fuse-color: #000000;">
+        <div class="fuse-color"></div>
+        <div class="fuse-info">
+          <span class="fuse-ampere">35 A</span>
+          <span class="fuse-name">Schwarz</span>
+        </div>
+      </div>
+      
+      <div class="fuse-card" style="--fuse-color: #FFFFFF; border: 2px solid #333;">
+        <div class="fuse-color"></div>
+        <div class="fuse-info">
+          <span class="fuse-ampere">50 A</span>
+          <span class="fuse-name">Weiß</span>
+        </div>
+      </div>
+      
+      <div class="fuse-card" style="--fuse-color: #B87333;">
+        <div class="fuse-color"></div>
+        <div class="fuse-info">
+          <span class="fuse-ampere">63 A</span>
+          <span class="fuse-name">Kupfer</span>
+        </div>
+      </div>
+      
+      <div class="fuse-card" style="--fuse-color: #C0C0C0;">
+        <div class="fuse-color"></div>
+        <div class="fuse-info">
+          <span class="fuse-ampere">80 A</span>
+          <span class="fuse-name">Silber</span>
+        </div>
+      </div>
+      
+      <div class="fuse-card" style="--fuse-color: #FF4500;">
+        <div class="fuse-color"></div>
+        <div class="fuse-info">
+          <span class="fuse-ampere">100 A</span>
+          <span class="fuse-name">Rot (Streifen)</span>
+        </div>
+      </div>
+    </div>
+    
+    <h3 style="margin-top: 2rem;">Merkspruch</h3>
+    <div class="info-box merkspruch">
+      <p><strong>„Rosa Bräute Grüßen Rote Greise, Blau und Gelb Sind Weiße Kühe"</strong></p>
+      <p style="font-size: 0.9rem; color: #666;">
+        <span style="color: #FFB6C1;">Rosa</span> (2A) - 
+        <span style="color: #8B4513;">Braun</span> (4A) - 
+        <span style="color: #228B22;">Grün</span> (6A) - 
+        <span style="color: #FF0000;">Rot</span> (10A) - 
+        <span style="color: #666;">Grau</span> (16A) - 
+        <span style="color: #0000FF;">Blau</span> (20A) - 
+        <span style="color: #DAA520;">Gelb</span> (25A) - 
+        <span style="color: #000;">Schwarz</span> (35A) - 
+        <span style="color: #999; background: #333; padding: 0 4px;">Weiß</span> (50A) - 
+        <span style="color: #B87333;">Kupfer</span> (63A)
+      </p>
+    </div>
+    
+    <h3>Aderfarben nach DIN VDE 0100</h3>
+    <table class="data-table">
+      <thead>
+        <tr><th>Funktion</th><th>Farbe</th><th>Kurzzeichen</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Schutzleiter (PE)</td><td style="background: linear-gradient(90deg, #22c55e 50%, #eab308 50%); color: #000;">Grün-Gelb</td><td>PE</td></tr>
+        <tr><td>Neutralleiter (N)</td><td style="background: #3b82f6; color: #fff;">Blau</td><td>N</td></tr>
+        <tr><td>Außenleiter L1</td><td style="background: #8B4513; color: #fff;">Braun</td><td>L1</td></tr>
+        <tr><td>Außenleiter L2</td><td style="background: #000; color: #fff;">Schwarz</td><td>L2</td></tr>
+        <tr><td>Außenleiter L3</td><td style="background: #666; color: #fff;">Grau</td><td>L3</td></tr>
+        <tr><td>PEN-Leiter</td><td style="background: linear-gradient(90deg, #22c55e 40%, #eab308 40%, #eab308 60%, #3b82f6 60%); color: #000;">Grün-Gelb + Blau</td><td>PEN</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- AUSLÖSECHARAKTERISTIK LSS -->
+  <div id="tab-lss" class="tab-content">
+    <h2>Auslösecharakteristik LSS</h2>
+    <p class="info-text">Leitungsschutzschalter nach DIN EN 60898</p>
+    
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Charakteristik</th>
+          <th>Auslösebereich</th>
+          <th>Anwendung</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong style="color: #3b82f6; font-size: 1.3em;">B</strong></td>
+          <td>3 × In ... 5 × In</td>
+          <td>Ohmsche Lasten, Beleuchtung, Steckdosen, Haushalt</td>
+        </tr>
+        <tr>
+          <td><strong style="color: #22c55e; font-size: 1.3em;">C</strong></td>
+          <td>5 × In ... 10 × In</td>
+          <td>Motoren, Leuchtstofflampen, Gewerbe, moderate Einschaltströme</td>
+        </tr>
+        <tr>
+          <td><strong style="color: #ef4444; font-size: 1.3em;">D</strong></td>
+          <td>10 × In ... 20 × In</td>
+          <td>Transformatoren, Schweißgeräte, große Motoren, hohe Anlaufströme</td>
+        </tr>
+        <tr>
+          <td><strong style="color: #f97316; font-size: 1.3em;">K</strong></td>
+          <td>8 × In ... 14 × In</td>
+          <td>Motoren mit hohem Anlaufstrom</td>
+        </tr>
+        <tr>
+          <td><strong style="color: #8b5cf6; font-size: 1.3em;">Z</strong></td>
+          <td>2 × In ... 3 × In</td>
+          <td>Halbleiter, empfindliche Elektronik, Messwandler</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <h3>Auslösekurve</h3>
+    <div class="chart-container">
+      <svg viewBox="0 0 400 300" class="auslöse-chart">
+        <!-- Achsen -->
+        <line x1="50" y1="250" x2="380" y2="250" stroke="#333" stroke-width="2"/>
+        <line x1="50" y1="250" x2="50" y2="20" stroke="#333" stroke-width="2"/>
+        
+        <!-- Y-Achse Beschriftung (Zeit) -->
+        <text x="15" y="140" transform="rotate(-90, 15, 140)" font-size="12">Zeit (s)</text>
+        <text x="45" y="255" font-size="10" text-anchor="end">0,01</text>
+        <text x="45" y="200" font-size="10" text-anchor="end">0,1</text>
+        <text x="45" y="150" font-size="10" text-anchor="end">1</text>
+        <text x="45" y="100" font-size="10" text-anchor="end">10</text>
+        <text x="45" y="50" font-size="10" text-anchor="end">100</text>
+        
+        <!-- X-Achse Beschriftung (Strom) -->
+        <text x="215" y="290" font-size="12" text-anchor="middle">Strom (× In)</text>
+        <text x="50" y="270" font-size="10" text-anchor="middle">1</text>
+        <text x="110" y="270" font-size="10" text-anchor="middle">2</text>
+        <text x="170" y="270" font-size="10" text-anchor="middle">3</text>
+        <text x="200" y="270" font-size="10" text-anchor="middle">5</text>
+        <text x="260" y="270" font-size="10" text-anchor="middle">10</text>
+        <text x="320" y="270" font-size="10" text-anchor="middle">20</text>
+        
+        <!-- Bereiche -->
+        <!-- B-Bereich -->
+        <rect x="170" y="30" width="30" height="220" fill="#3b82f6" fill-opacity="0.3"/>
+        <text x="185" y="20" font-size="11" fill="#3b82f6" text-anchor="middle" font-weight="bold">B</text>
+        
+        <!-- C-Bereich -->
+        <rect x="200" y="30" width="60" height="220" fill="#22c55e" fill-opacity="0.3"/>
+        <text x="230" y="20" font-size="11" fill="#22c55e" text-anchor="middle" font-weight="bold">C</text>
+        
+        <!-- D-Bereich -->
+        <rect x="260" y="30" width="60" height="220" fill="#ef4444" fill-opacity="0.3"/>
+        <text x="290" y="20" font-size="11" fill="#ef4444" text-anchor="middle" font-weight="bold">D</text>
+        
+        <!-- Thermische Auslösung -->
+        <path d="M 50 50 Q 100 80 150 150 T 200 250" stroke="#666" stroke-width="2" fill="none"/>
+        <text x="80" y="45" font-size="9" fill="#666">thermisch</text>
+        
+        <!-- Magnetische Auslösung -->
+        <line x1="170" y1="245" x2="320" y2="245" stroke="#333" stroke-width="2"/>
+        <text x="250" y="240" font-size="9" fill="#333">magnetisch</text>
+      </svg>
+    </div>
+    
+    <h3>Bemessungsströme LSS</h3>
+    <table class="data-table">
+      <thead>
+        <tr><th>Nennstrom</th><th>Min. Querschnitt Cu</th><th>Typische Anwendung</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>6 A</td><td>1,5 mm²</td><td>Einzelne Leuchte</td></tr>
+        <tr><td>10 A</td><td>1,5 mm²</td><td>Beleuchtungskreis</td></tr>
+        <tr><td>13 A</td><td>1,5 mm²</td><td>Steckdosenkreis (UK)</td></tr>
+        <tr><td>16 A</td><td>2,5 mm²</td><td>Steckdosenkreis</td></tr>
+        <tr><td>20 A</td><td>2,5 mm²</td><td>Einzelverbraucher</td></tr>
+        <tr><td>25 A</td><td>4 mm²</td><td>Warmwasser, E-Herd</td></tr>
+        <tr><td>32 A</td><td>6 mm²</td><td>Durchlauferhitzer</td></tr>
+        <tr><td>40 A</td><td>10 mm²</td><td>Unterverteilung</td></tr>
+        <tr><td>50 A</td><td>16 mm²</td><td>Unterverteilung</td></tr>
+        <tr><td>63 A</td><td>16 mm²</td><td>Hauptverteilung</td></tr>
+      </tbody>
+    </table>
+    
+    <div class="info-box">
+      <h4>💡 Auswahlhilfe</h4>
+      <ul>
+        <li><strong>B:</strong> Standard für Wohnungen (Steckdosen, Licht)</li>
+        <li><strong>C:</strong> Bei Motoren (Klimaanlage, Pumpen) oder Leuchtstofflampen</li>
+        <li><strong>D:</strong> Bei Transformatoren oder Schweißgeräten</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- NH-SICHERUNGEN -->
+  <div id="tab-nh" class="tab-content">
+    <h2>NH-Sicherungen</h2>
+    <p class="info-text">Niederspannungs-Hochleistungs-Sicherungen nach DIN VDE 0636</p>
+    
+    <h3>Baugrößen und Nennströme</h3>
+    <table class="data-table nh-table">
+      <thead>
+        <tr>
+          <th>Baugröße</th>
+          <th>Nennströme (A)</th>
+          <th>Abmessungen (L×B×H mm)</th>
+          <th>Kontaktabstand</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>NH 000</strong></td>
+          <td>6, 10, 16, 20, 25, 32, 35, 40, 50, 63, 80, 100</td>
+          <td>79 × 43 × 50</td>
+          <td>41 mm</td>
+        </tr>
+        <tr>
+          <td><strong>NH 00</strong></td>
+          <td>6, 10, 16, 20, 25, 32, 35, 40, 50, 63, 80, 100, 125, 160</td>
+          <td>79 × 43 × 63</td>
+          <td>41 mm</td>
+        </tr>
+        <tr>
+          <td><strong>NH 1</strong></td>
+          <td>50, 63, 80, 100, 125, 160, 200, 224, 250</td>
+          <td>135 × 62 × 70</td>
+          <td>72 mm</td>
+        </tr>
+        <tr>
+          <td><strong>NH 2</strong></td>
+          <td>125, 160, 200, 224, 250, 315, 355, 400</td>
+          <td>150 × 72 × 80</td>
+          <td>88 mm</td>
+        </tr>
+        <tr>
+          <td><strong>NH 3</strong></td>
+          <td>315, 355, 400, 425, 500, 630</td>
+          <td>150 × 72 × 135</td>
+          <td>88 mm</td>
+        </tr>
+        <tr>
+          <td><strong>NH 4</strong></td>
+          <td>500, 630, 800, 1000, 1250</td>
+          <td>210 × 92 × 150</td>
+          <td>130 mm</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <h3>Betriebsklassen (gG/aM)</h3>
+    <table class="data-table">
+      <thead>
+        <tr><th>Klasse</th><th>Bedeutung</th><th>Anwendung</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>gG</strong></td>
+          <td>Ganzbereichsschutz</td>
+          <td>Kabel- und Leitungsschutz, allgemeine Anwendung</td>
+        </tr>
+        <tr>
+          <td><strong>gL</strong></td>
+          <td>Ganzbereichsschutz Leitung</td>
+          <td>Identisch mit gG (alte Bezeichnung)</td>
+        </tr>
+        <tr>
+          <td><strong>aM</strong></td>
+          <td>Teilbereichsschutz Motor</td>
+          <td>Motorschutz, nur Kurzschluss (nicht Überlast)</td>
+        </tr>
+        <tr>
+          <td><strong>gR</strong></td>
+          <td>Ganzbereichsschutz</td>
+          <td>Halbleiterschutz (schnell)</td>
+        </tr>
+        <tr>
+          <td><strong>aR</strong></td>
+          <td>Teilbereichsschutz</td>
+          <td>Halbleiterschutz, nur Kurzschluss</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <h3>Kennmelder-Farben NH</h3>
+    <div class="fuse-grid">
+      <div class="fuse-card" style="--fuse-color: #FFB6C1;">
+        <div class="fuse-color"></div>
+        <div class="fuse-info">
+          <span class="fuse-ampere">6 - 10 A</span>
+          <span class="fuse-name">Rosa</span>
+        </div>
+      </div>
+      <div class="fuse-card" style="--fuse-color: #32CD32;">
+        <div class="fuse-color"></div>
+        <div class="fuse-info">
+          <span class="fuse-ampere">16 - 35 A</span>
+          <span class="fuse-name">Grün</span>
+        </div>
+      </div>
+      <div class="fuse-card" style="--fuse-color: #FF0000;">
+        <div class="fuse-color"></div>
+        <div class="fuse-info">
+          <span class="fuse-ampere">40 - 100 A</span>
+          <span class="fuse-name">Rot</span>
+        </div>
+      </div>
+      <div class="fuse-card" style="--fuse-color: #FFD700;">
+        <div class="fuse-color"></div>
+        <div class="fuse-info">
+          <span class="fuse-ampere">125 - 200 A</span>
+          <span class="fuse-name">Gelb</span>
+        </div>
+      </div>
+      <div class="fuse-card" style="--fuse-color: #000000;">
+        <div class="fuse-color"></div>
+        <div class="fuse-info">
+          <span class="fuse-ampere">224 - 400 A</span>
+          <span class="fuse-name">Schwarz</span>
+        </div>
+      </div>
+      <div class="fuse-card" style="--fuse-color: #FFFFFF; border: 2px solid #333;">
+        <div class="fuse-color"></div>
+        <div class="fuse-info">
+          <span class="fuse-ampere">425 - 630 A</span>
+          <span class="fuse-name">Weiß</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="warning-box">
+      <h4>⚠️ Sicherheitshinweise</h4>
+      <ul>
+        <li>NH-Sicherungen nur mit geeignetem Sicherungsaufsteckgriff wechseln!</li>
+        <li>Gesichtsschutz (Helm mit Visier) tragen</li>
+        <li>Persönliche Schutzausrüstung (PSA) verwenden</li>
+        <li>Anlage möglichst freischalten vor dem Wechsel</li>
+        <li>Kennmelder vor dem Einsetzen prüfen</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- DIAZED/NEOZED -->
+  <div id="tab-diazed" class="tab-content">
+    <h2>DIAZED und NEOZED Sicherungen</h2>
+    
+    <h3>DIAZED (DII, DIII)</h3>
+    <p class="info-text">Für ältere Installationen und spezielle Anwendungen</p>
+    
+    <table class="data-table">
+      <thead>
+        <tr><th>Größe</th><th>Nennströme</th><th>Passschraube</th><th>Sockel</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>DII</strong></td>
+          <td>2, 4, 6, 10, 16, 20, 25 A</td>
+          <td>E27 (6A bis 25A)</td>
+          <td>E27</td>
+        </tr>
+        <tr>
+          <td><strong>DIII</strong></td>
+          <td>35, 50, 63 A</td>
+          <td>E33</td>
+          <td>E33</td>
+        </tr>
+        <tr>
+          <td><strong>DIV</strong></td>
+          <td>80, 100 A</td>
+          <td>R1¼"</td>
+          <td>R1¼"</td>
+        </tr>
+        <tr>
+          <td><strong>DV</strong></td>
+          <td>125, 160, 200 A</td>
+          <td>R2"</td>
+          <td>R2"</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <h3>NEOZED (D01, D02, D03)</h3>
+    <p class="info-text">Moderne Sicherungen für Unterverteilungen</p>
+    
+    <table class="data-table">
+      <thead>
+        <tr><th>Größe</th><th>Nennströme</th><th>Fußkontakt ∅</th><th>Kennring</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>D01</strong></td>
+          <td>2, 4, 6, 10, 13, 16 A</td>
+          <td>6 mm</td>
+          <td>E14-Gewinde</td>
+        </tr>
+        <tr>
+          <td><strong>D02</strong></td>
+          <td>20, 25, 32, 35, 40, 50, 63 A</td>
+          <td>8 mm</td>
+          <td>E18-Gewinde</td>
+        </tr>
+        <tr>
+          <td><strong>D03</strong></td>
+          <td>63, 80, 100 A</td>
+          <td>10 mm</td>
+          <td>E27-Gewinde</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <h3>Passschraube/Passeinsatz</h3>
+    <p class="info-text">Verhindert Einsetzen falscher (größerer) Sicherungen</p>
+    
+    <table class="data-table">
+      <thead>
+        <tr><th>Max. Nennstrom</th><th>Farbe Passeinsatz</th><th>Bohrung ∅</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>2 A</td><td style="background: #FFB6C1;">Rosa</td><td>5,5 mm</td></tr>
+        <tr><td>4 A</td><td style="background: #D2691E; color: #fff;">Braun</td><td>6,5 mm</td></tr>
+        <tr><td>6 A</td><td style="background: #32CD32;">Grün</td><td>8 mm</td></tr>
+        <tr><td>10 A</td><td style="background: #FF0000; color: #fff;">Rot</td><td>10 mm</td></tr>
+        <tr><td>16 A</td><td style="background: #808080; color: #fff;">Grau</td><td>12 mm</td></tr>
+        <tr><td>20 A</td><td style="background: #4169E1; color: #fff;">Blau</td><td>14 mm</td></tr>
+        <tr><td>25 A</td><td style="background: #FFD700;">Gelb</td><td>16 mm</td></tr>
+        <tr><td>35 A</td><td style="background: #000; color: #fff;">Schwarz</td><td>20 mm</td></tr>
+        <tr><td>50 A</td><td style="background: #fff; border: 1px solid #000;">Weiß</td><td>22 mm</td></tr>
+        <tr><td>63 A</td><td style="background: #B87333;">Kupfer</td><td>25 mm</td></tr>
+      </tbody>
+    </table>
+    
+    <div class="info-box">
+      <h4>📌 Unterschiede DIAZED vs NEOZED</h4>
+      <ul>
+        <li><strong>DIAZED:</strong> Älteres System, größere Bauform, E27-Sockel bei DII</li>
+        <li><strong>NEOZED:</strong> Kompakter, moderner, für platzsparende Verteilungen</li>
+        <li>Beide Systeme sind nicht kompatibel</li>
+        <li>Neuanlagen: Meist LSS oder NH-Sicherungen</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<style>
+.fuse-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.fuse-card {
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.fuse-color {
+  height: 50px;
+  background-color: var(--fuse-color);
+}
+
+.fuse-info {
+  padding: 0.75rem;
+}
+
+.fuse-ampere {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #1e3a5f;
+}
+
+.fuse-name {
+  display: block;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.merkspruch {
+  background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+  border-left: 4px solid #0284c7;
+}
+
+.merkspruch p:first-child {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.chart-container {
+  max-width: 500px;
+  margin: 1.5rem auto;
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.auslöse-chart {
+  width: 100%;
+  height: auto;
+}
+
+.nh-table td:first-child {
+  font-weight: bold;
+  color: #1e3a5f;
+}
+
+.warning-box {
+  background: #fef3c7;
+  border: 1px solid #f59e0b;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-top: 1.5rem;
+}
+
+.warning-box h4 {
+  color: #b45309;
+  margin-bottom: 0.5rem;
+}
+</style>

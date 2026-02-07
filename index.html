@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#1e40af">
+  <meta name="description" content="Komplette Elektro-Suite für Fachkräfte und Azubis - Berechnungen, Symbole, Prüfungsvorbereitung">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="ElektroProfi">
+  
+  <title>ElektroProfi Ultimate</title>
+  
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  
+  <!-- Offline Indicator -->
+  <div id="offline-indicator" class="offline-indicator">📴 Offline-Modus</div>
+  
+  <!-- Header -->
+  <header class="header">
+    <h1>⚡ ElektroProfi Ultimate</h1>
+    <p>Komplettlösung für Elektrofachkräfte & Azubis</p>
+  </header>
+  
+  <!-- Main Content Container -->
+  <main class="container" id="main-content">
+    <!-- Content wird per JavaScript geladen -->
+  </main>
+  
+  <!-- Bottom Navigation -->
+  <nav class="nav-bottom">
+    <a href="pages/berechnungen.html" class="nav-item active" data-page="berechnungen">
+      <span class="icon">🧮</span>
+      <span>Rechner</span>
+    </a>
+    <a href="pages/erweitert.html" class="nav-item" data-page="erweitert">
+      <span class="icon">⚙️</span>
+      <span>Erweitert</span>
+    </a>
+    <a href="pages/praxis.html" class="nav-item" data-page="praxis">
+      <span class="icon">🔧</span>
+      <span>Praxis</span>
+    </a>
+    <a href="pages/wissen.html" class="nav-item" data-page="wissen">
+      <span class="icon">📚</span>
+      <span>Wissen</span>
+    </a>
+    <a href="pages/lernen.html" class="nav-item" data-page="lernen">
+      <span class="icon">🎓</span>
+      <span>Lernen</span>
+    </a>
+    <a href="pages/fehlersuche.html" class="nav-item" data-page="fehlersuche">
+      <span class="icon">🔍</span>
+      <span>Fehler</span>
+    </a>
+  </nav>
+  
+  <script src="js/app.js"></script>
+  <script src="js/berechnungen.js"></script>
+  <script src="js/quiz.js"></script>
+  
+  <script>
+    // Single Page App Navigation
+    document.addEventListener('DOMContentLoaded', () => {
+      const mainContent = document.getElementById('main-content');
+      const navItems = document.querySelectorAll('.nav-item');
+      
+      // Seite laden
+      async function loadPage(pageName) {
+        try {
+          const response = await fetch(`pages/${pageName}.html`);
+          if (!response.ok) throw new Error('Seite nicht gefunden');
+          const html = await response.text();
+          mainContent.innerHTML = html;
+          
+          // Initialisierungen nach Laden
+          if (pageName === 'berechnungen') {
+            if (typeof updateOhmFields === 'function') updateOhmFields();
+            if (typeof updateLeistungFields === 'function') updateLeistungFields();
+          }
+          
+          // Ersten Tab aktivieren
+          const firstTab = mainContent.querySelector('.tab');
+          if (firstTab) firstTab.click();
+          
+        } catch (err) {
+          mainContent.innerHTML = `
+            <div class="danger" style="margin-top:20px">
+              <p>Fehler beim Laden der Seite. Bitte prüfen Sie Ihre Internetverbindung.</p>
+            </div>`;
+        }
+      }
+      
+      // Navigation Handler
+      navItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+          e.preventDefault();
+          
+          // Aktiv-Status setzen
+          navItems.forEach(n => n.classList.remove('active'));
+          item.classList.add('active');
+          
+          // Seite laden
+          const page = item.dataset.page;
+          loadPage(page);
+          
+          // URL aktualisieren (History API)
+          history.pushState({page}, '', `#${page}`);
+        });
+      });
+      
+      // Browser Back/Forward
+      window.addEventListener('popstate', (e) => {
+        const page = e.state?.page || 'berechnungen';
+        loadPage(page);
+        navItems.forEach(n => {
+          n.classList.toggle('active', n.dataset.page === page);
+        });
+      });
+      
+      // Initiale Seite laden
+      const hash = window.location.hash.slice(1) || 'berechnungen';
+      loadPage(hash);
+      navItems.forEach(n => {
+        n.classList.toggle('active', n.dataset.page === hash);
+      });
+    });
+  </script>
+</body>
+</html>

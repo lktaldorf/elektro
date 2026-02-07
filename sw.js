@@ -1,20 +1,20 @@
 const CACHE_NAME = 'elektro-profi-v2.0.0';
 const ASSETS_TO_CACHE = [
-  '/',
-  '/index.html',
-  '/css/style.css',
-  '/js/app.js',
-  '/js/berechnungen.js',
-  '/js/quiz.js',
-  '/pages/berechnungen.html',
-  '/pages/erweitert.html',
-  '/pages/praxis.html',
-  '/pages/sicherungen.html',
-  '/pages/wissen.html',
-  '/pages/lernen.html',
-  '/pages/fehlersuche.html',
-  '/manifest.json',
-  '/icons/icon.svg'
+  './',
+  './index.html',
+  './css/style.css',
+  './js/app.js',
+  './js/berechnungen.js',
+  './js/quiz.js',
+  './pages/berechnungen.html',
+  './pages/erweitert.html',
+  './pages/praxis.html',
+  './pages/sicherungen.html',
+  './pages/wissen.html',
+  './pages/lernen.html',
+  './pages/fehlersuche.html',
+  './manifest.json',
+  './icons/icon.svg'
 ];
 
 // Installation - Cache alle wichtigen Dateien
@@ -79,7 +79,7 @@ self.addEventListener('fetch', event => {
           .catch(() => {
             // Offline und nicht im Cache - Fallback
             if (event.request.destination === 'document') {
-              return caches.match('/index.html');
+              return caches.match('./index.html');
             }
           });
       })

@@ -56,8 +56,13 @@ const KABELGEWICHTE = {
 // OHMSCHES GESETZ
 // ============================================
 function updateOhmFields() {
-  const type = document.getElementById('ohm-calc-type').value;
+  const typeEl = document.getElementById('ohm-calc-type');
   const container = document.getElementById('ohm-inputs');
+  
+  // Null-Check: Elemente existieren nur auf Berechnungsseite
+  if (!typeEl || !container) return;
+  
+  const type = typeEl.value;
   let html = '';
   
   switch(type) {
@@ -365,8 +370,13 @@ function calculateVoltageDrop() {
 // LEISTUNGSBERECHNUNG
 // ============================================
 function updateLeistungFields() {
-  const art = document.getElementById('leistung-art').value;
+  const artEl = document.getElementById('leistung-art');
   const container = document.getElementById('leistung-inputs');
+  
+  // Null-Check: Elemente existieren nur auf Berechnungsseite
+  if (!artEl || !container) return;
+  
+  const art = artEl.value;
   let html = '';
   
   if (art === 'dc') {

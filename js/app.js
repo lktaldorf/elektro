@@ -1,6 +1,7 @@
 /**
- * ElektroProfi Ultimate - Haupt-App
+ * ElektroProfi Ultimate - Haupt-App v2.1
  * PWA mit Offline-Support
+ * BUILD: 2026-02-07-fix
  */
 
 // Service Worker registrieren
@@ -229,7 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Offline-Status prüfen
   updateOnlineStatus();
   
-  console.log('ElektroProfi Ultimate v2.0 geladen');
+  console.log('ElektroProfi Ultimate v2.1 (Build 2026-02-07) geladen');
 });
 
 // Export für Module

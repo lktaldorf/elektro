@@ -6,7 +6,7 @@
 // Service Worker registrieren
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
+    navigator.serviceWorker.register('./sw.js')
       .then(reg => {
         console.log('Service Worker registriert:', reg.scope);
         
@@ -29,12 +29,12 @@ window.addEventListener('online', updateOnlineStatus);
 window.addEventListener('offline', updateOnlineStatus);
 
 function updateOnlineStatus() {
-  const indicator = document.getElementById('offline-indicator');
+  const indicator = document.getElementById('offline-badge');
   if (indicator) {
     if (!navigator.onLine) {
-      indicator.classList.add('show');
+      indicator.style.display = 'inline-block';
     } else {
-      indicator.classList.remove('show');
+      indicator.style.display = 'none';
     }
   }
 }
@@ -46,9 +46,9 @@ function showUpdateNotification() {
   }
 }
 
-// Tab-Navigation
+// Tab-Navigation innerhalb einer Seite
 function showTab(tabId) {
-  const container = event.target.closest('.container') || document;
+  const container = event.target.closest('.tab-container') || document.getElementById('content');
   
   // Alle Contents ausblenden
   container.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
@@ -62,10 +62,107 @@ function showTab(tabId) {
   event.target.classList.add('active');
 }
 
-// Seiten-Navigation (für Multi-Page PWA)
-function loadPage(pageUrl) {
-  // Bei echter Multi-Page App: window.location.href = pageUrl;
-  // Bei SPA: fetch und inject
+// Alternative Tab-Funktion für tab-content Elemente
+function switchTab(button, tabId) {
+  const container = button.closest('.tab-container') || document;
+  
+  // Alle Tabs deaktivieren
+  container.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  container.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  
+  // Gewählten aktivieren
+  button.classList.add('active');
+  const content = document.getElementById(tabId);
+  if (content) {
+    content.classList.add('active');
+  }
+}
+
+// Seiten-Navigation
+let currentPage = 'home';
+
+function loadPage(pageName) {
+  // Navigation-Buttons aktualisieren
+  document.querySelectorAll('.nav-btn').forEach(btn => {
+    btn.classList.remove('active');
+    if (btn.dataset.page === pageName) {
+      btn.classList.add('active');
+    }
+  });
+  
+  if (pageName === 'home') {
+    // Startseite anzeigen
+    document.getElementById('content').innerHTML = `
+      <div class="welcome">
+        <h2>Willkommen!</h2>
+        <p>Wähle einen Bereich aus der Navigation.</p>
+        <div class="feature-grid">
+          <div class="feature-card" onclick="loadPage('berechnungen')">
+            <span class="feature-icon">🔢</span>
+            <span>Berechnungen</span>
+          </div>
+          <div class="feature-card" onclick="loadPage('erweitert')">
+            <span class="feature-icon">📐</span>
+            <span>Erweitert</span>
+          </div>
+          <div class="feature-card" onclick="loadPage('praxis')">
+            <span class="feature-icon">🔌</span>
+            <span>Praxis</span>
+          </div>
+          <div class="feature-card" onclick="loadPage('sicherungen')">
+            <span class="feature-icon">🛡️</span>
+            <span>Sicherungen</span>
+          </div>
+          <div class="feature-card" onclick="loadPage('wissen')">
+            <span class="feature-icon">📚</span>
+            <span>Wissen</span>
+          </div>
+          <div class="feature-card" onclick="loadPage('lernen')">
+            <span class="feature-icon">🎓</span>
+            <span>Quiz</span>
+          </div>
+        </div>
+      </div>
+    `;
+    currentPage = 'home';
+    return;
+  }
+  
+  // Seite per fetch laden
+  fetch(`./pages/${pageName}.html`)
+    .then(response => {
+      if (!response.ok) throw new Error('Seite nicht gefunden');
+      return response.text();
+    })
+    .then(html => {
+      document.getElementById('content').innerHTML = html;
+      currentPage = pageName;
+      
+      // Nach dem Laden: Felder initialisieren falls Berechnungsseite
+      if (pageName === 'berechnungen') {
+        if (typeof updateOhmFields === 'function') updateOhmFields();
+        if (typeof updateLeistungFields === 'function') updateLeistungFields();
+      }
+      if (pageName === 'erweitert') {
+        if (typeof updateTrafoFields === 'function') updateTrafoFields();
+      }
+      if (pageName === 'lernen') {
+        if (typeof initQuiz === 'function') initQuiz();
+      }
+      
+      // Scroll nach oben
+      window.scrollTo(0, 0);
+    })
+    .catch(err => {
+      console.error('Fehler beim Laden:', err);
+      document.getElementById('content').innerHTML = `
+        <div class="error-box">
+          <h2>⚠️ Fehler</h2>
+          <p>Seite konnte nicht geladen werden.</p>
+          <button class="btn" onclick="loadPage('home')">Zur Startseite</button>
+        </div>
+      `;
+    });
 }
 
 // Troubleshoot Toggle
@@ -132,21 +229,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // Offline-Status prüfen
   updateOnlineStatus();
   
-  // Letzte Einstellungen laden
-  const lastTab = loadSettings('lastTab');
-  if (lastTab) {
-    const tabBtn = document.querySelector(`[data-tab="${lastTab}"]`);
-    if (tabBtn) tabBtn.click();
-  }
-  
-  // Felder initialisieren
-  if (typeof updateOhmFields === 'function') updateOhmFields();
-  if (typeof updateLeistungFields === 'function') updateLeistungFields();
-  
-  console.log('ElektroProfi Ultimate geladen');
+  console.log('ElektroProfi Ultimate v2.0 geladen');
 });
 
 // Export für Module
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { showTab, toggleTroubleshoot, formatNumber, validateNumber };
+  module.exports = { showTab, switchTab, loadPage, toggleTroubleshoot, formatNumber, validateNumber };
 }

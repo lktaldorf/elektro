@@ -1,113 +1,92 @@
-# ElektroProfi Ultimate PWA
+# ElektroProfi Ultimate v2.0
 
-Komplette Elektro-Suite für Elektrofachkräfte und Azubis mit Offline-Unterstützung.
+Komplette Progressive Web App für Elektrofachkräfte und Auszubildende.
+
+## 🆕 Neuerungen in Version 2.0
+
+### 1. Korrigierte Symbole nach DIN-Normen
+- **Installationssymbole (DIN 18015)**: 35+ Symbole exakt nach Norm
+  - Steckdosen (Halbkreis oben + Strich)
+  - Schalter (Kreis mit Anschluss)
+  - Beleuchtung (X-Zeichen)
+  - Geräte (E, Herd mit 4 Punkten, etc.)
+- **Schaltplansymbole (DIN EN 60617)**: 30+ Symbole
+  - Widerstand (Rechteck), Kondensator, Spule
+  - Dioden, Transistoren (NPN/PNP korrekt)
+  - Logikgatter (& und ≥1)
+  - Messgeräte (A/V/Ω im Kreis)
+
+### 2. Neue Sicherungen-Seite
+- **Farben (DIN 49360)**: Visuelle Farbkarten mit Merkspruch
+- **LSS-Charakteristiken**: B/C/D/K/Z mit Auslösekurven-Diagramm
+- **NH-Sicherungen**: Komplette Tabelle 000 bis NH4
+  - Maße, Kontaktabstände, Stromstärken
+  - Betriebsklassen (gG, aM, gR/aR)
+  - Sicherheitshinweise
+- **DIAZED/NEOZED**: Größen und Sockelfarben
+
+### 3. Bad-Zonen mit Maßzeichnungen
+- **Draufsicht**: Badewanne, Dusche, Waschbecken mit Zone 0/1/2
+- **Seitenansicht**: Höhenbemaßung 225cm, 120cm Brauseradius
+- IP-Schutzarten für jede Zone
+- FI-Schutz ≤30mA Pflicht
+
+### 4. Strukturierte Navigation
+- Separate Sicherungen-Seite mit Tabs
+- Übersichtlichere Praxis-Seite
+- Erweiterte Wissen-Seite mit Installationshöhen
 
 ## 📁 Struktur
 
 ```
-elektro-pwa/
-├── index.html          # Hauptseite mit Navigation
+elektro-pwa-v2/
+├── index.html          # Startseite
 ├── manifest.json       # PWA-Manifest
-├── sw.js              # Service Worker (Offline-Cache)
+├── sw.js              # Service Worker
 ├── css/
 │   └── style.css      # Alle Styles
 ├── js/
-│   ├── app.js         # Haupt-App-Logik
-│   ├── berechnungen.js # Alle Berechnungsfunktionen
-│   └── quiz.js        # Quiz-System
+│   ├── app.js         # Navigation
+│   ├── berechnungen.js # Formeln
+│   └── quiz.js        # Quiz-Logik
 ├── pages/
-│   ├── berechnungen.html  # Ohm, Querschnitt, Leistung, etc.
-│   ├── erweitert.html     # Erdung, Kurzschluss, Trafo
-│   ├── praxis.html        # Symbole, Drehmoment, Farben
-│   ├── wissen.html        # Tabellen, Höhen, Badzonen
+│   ├── berechnungen.html  # Ohm, Querschnitt, Leistung
+│   ├── erweitert.html     # Kurzschluss, Trafo
+│   ├── praxis.html        # Symbole, Drehmoment
+│   ├── sicherungen.html   # Farben, LSS, NH, DIAZED
+│   ├── wissen.html        # Badzonen, Höhen, IP
 │   ├── lernen.html        # Quiz
-│   └── fehlersuche.html   # Troubleshooting
+│   └── fehlersuche.html   # Messungen
 └── icons/
-    └── icon.svg       # App-Icon (für PNGs konvertieren)
+    └── icon-*.png     # App-Icons
 ```
 
-## 🚀 Installation & Deployment
+## 🚀 Installation
 
-### Lokal testen
+1. ZIP entpacken auf Webserver oder lokal
+2. Im Browser öffnen (http://localhost oder file://)
+3. "Zum Startbildschirm hinzufügen" für PWA-Installation
+4. Funktioniert auch offline!
 
-Die PWA benötigt einen Webserver (wegen Service Worker):
+## ✅ Geprüfte Formeln
 
-```bash
-# Mit Python 3
-cd elektro-pwa
-python -m http.server 8080
+Alle Formeln nach DIN VDE:
+- Ohmsches Gesetz: U = I × R
+- Spannungsfall Einphasig: ΔU = (2 × L × I × cos φ) / (κ × A)
+- Spannungsfall Drehstrom: ΔU = (√3 × L × I × cos φ) / (κ × A)
+- Leistung AC: S = √3 × U × I, P = S × cos φ
+- Kurzschlussstrom: Ik" = Sn / (√3 × Un × uk)
 
-# Mit Node.js (npx)
-npx serve .
+## 📱 Features
 
-# Mit PHP
-php -S localhost:8080
-```
-
-Dann öffnen: `http://localhost:8080`
-
-### Auf Webserver deployen
-
-1. Alle Dateien auf deinen Webserver hochladen
-2. HTTPS ist erforderlich für PWA-Installation!
-3. Auf SharePoint: Als statische Website bereitstellen
-
-### Icons generieren
-
-Für vollständige PWA-Unterstützung, generiere PNG-Icons aus dem SVG:
-- icon-72.png (72×72)
-- icon-96.png (96×96)
-- icon-128.png (128×128)
-- icon-144.png (144×144)
-- icon-152.png (152×152)
-- icon-192.png (192×192)
-- icon-384.png (384×384)
-- icon-512.png (512×512)
-
-Online-Tools: realfavicongenerator.net oder pwa-asset-generator
-
-## 📱 Als App installieren
-
-Nach dem Öffnen im Browser:
-- **Chrome/Edge**: Menü → "App installieren" oder Banner
-- **Safari iOS**: Teilen → "Zum Home-Bildschirm"
-- **Firefox**: Adressleiste → Haus-Icon
-
-## ✨ Features
-
-- ✅ **Offline-fähig** - Funktioniert ohne Internet
-- ✅ **Installierbar** - Als App auf Home-Screen
-- ✅ **Responsive** - Optimiert für Handy & Desktop
-- ✅ **Korrigierte Formeln** - Nach DIN VDE
-- ✅ **Quiz-System** - Für Prüfungsvorbereitung
-
-## 🔧 Berechnungen (alle korrigiert nach DIN VDE)
-
-- Ohmsches Gesetz (U, I, R, P)
-- Leitungsquerschnitt nach Belastbarkeit & Spannungsfall
-- Spannungsfall (Einphasig & Drehstrom)
-- Leistungsberechnung (DC, AC 1~, AC 3~)
-- Absicherung & Sicherungswahl
-- Erdungswiderstand
-- Kurzschlussstrom
-- Trafo-Dimensionierung
-- Kabelgewicht
-- Trassen-Dimensionierung
-
-## 📐 Korrigierte Formeln
-
-### Spannungsfall
-- **Einphasig:** ΔU = (2 × L × I × cos φ) / (κ × A)
-- **Drehstrom:** ΔU = (√3 × L × I × cos φ) / (κ × A)
-
-### Kurzschlussstrom
-- **Am Trafo:** Ik" = Sn / (√3 × Un × uk)
-- **Leitungsimpedanz:** ZL = 2 × L / (κ × A)
-
-## 📝 Lizenz
-
-Frei zur Nutzung. Keine Gewähr für Berechnungsergebnisse.
-Alle Berechnungen durch Fachkraft prüfen lassen!
+- ⚡ Alle wichtigen Elektro-Berechnungen
+- 📐 DIN-konforme Symbole
+- 🛡️ Komplettes Sicherungswissen
+- 📚 Normen-Nachschlagewerk
+- 🎓 Quiz zum Lernen
+- 🔧 Fehlersuche-Anleitungen
+- 📵 Offline-Funktionalität
+- 📱 Installierbar als App
 
 ---
-Erstellt für ifm electronic - chh
+Version 2.0 | 2026 | Für Elektrofachkräfte

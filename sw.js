@@ -1,4 +1,4 @@
-const CACHE_NAME = 'elektro-profi-v1.0.0';
+const CACHE_NAME = 'elektro-profi-v2.0.0';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
@@ -9,6 +9,7 @@ const ASSETS_TO_CACHE = [
   '/pages/berechnungen.html',
   '/pages/erweitert.html',
   '/pages/praxis.html',
+  '/pages/sicherungen.html',
   '/pages/wissen.html',
   '/pages/lernen.html',
   '/pages/fehlersuche.html',

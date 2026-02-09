@@ -1,7 +1,13 @@
-const CACHE_NAME = 'elektro-profi-v2.0.0';
+const CACHE_NAME = 'hoher-bausammlung-v3.0.0';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
+  './hlsk.html',
+  './statik.html',
+  './brandschutz.html',
+  './arbeitsschutz.html',
+  './baurecht.html',
+  './geg.html',
   './css/style.css',
   './js/app.js',
   './js/berechnungen.js',

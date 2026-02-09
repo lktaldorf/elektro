@@ -1,7 +1,7 @@
 {
-  "name": "ElektroProfi Ultimate",
-  "short_name": "ElektroProfi",
-  "description": "Komplette Elektro-Suite für Fachkräfte & Azubis",
+  "name": "Hoher Bausammlung",
+  "short_name": "HoherBau",
+  "description": "Komplette Bau-Suite für alle Gewerke - Elektro, HLSK, Statik, Brandschutz",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",

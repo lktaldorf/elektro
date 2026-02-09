@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <meta name="theme-color" content="#1e40af">
-  <meta name="description" content="Komplette Elektro-Suite für Fachkräfte & Azubis">
-  <title>ElektroProfi Ultimate</title>
+  <meta name="description" content="Komplette Bau-Suite für alle Gewerke">
+  <title>Hoher Bausammlung</title>
   <link rel="manifest" href="./manifest.json">
   <link rel="icon" type="image/svg+xml" href="./icons/icon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="./icons/icon-72.png">
@@ -14,13 +14,23 @@
 </head>
 <body>
   <header class="app-header">
-    <h1>⚡ ElektroProfi</h1>
-    <span class="offline-indicator" id="offline-badge">Offline</span>
+    <div class="header-content">
+      <select id="gewerk-select" class="gewerk-dropdown" onchange="changeGewerk(this.value)">
+        <option value="elektro" selected>⚡ Elektro</option>
+        <option value="hlsk">🔧 HLSK</option>
+        <option value="statik">🏗️ Statik</option>
+        <option value="brandschutz">🔥 Brandschutz</option>
+        <option value="arbeitsschutz">⚠️ Arbeitsschutz</option>
+        <option value="baurecht">📋 Baurecht</option>
+        <option value="geg">🌱 GEG/Energie</option>
+      </select>
+      <span class="offline-indicator" id="offline-badge">Offline</span>
+    </div>
   </header>
 
   <main id="content">
-    <div class="welcome">
-      <h2>Willkommen!</h2>
+    <div class="welcome" id="welcome-elektro">
+      <h2>⚡ Elektro</h2>
       <p>Wähle einen Bereich aus der Navigation.</p>
       <div class="feature-grid">
         <div class="feature-card" onclick="loadPage('berechnungen')">
@@ -29,7 +39,7 @@
         </div>
         <div class="feature-card" onclick="loadPage('erweitert')">
           <span class="feature-icon">📐</span>
-          <span>Erweitert</span>
+          <span>Erweiterte Berechn.</span>
         </div>
         <div class="feature-card" onclick="loadPage('praxis')">
           <span class="feature-icon">🔌</span>
@@ -41,7 +51,11 @@
         </div>
         <div class="feature-card" onclick="loadPage('wissen')">
           <span class="feature-icon">📚</span>
-          <span>Wissen</span>
+          <span>Normen</span>
+        </div>
+        <div class="feature-card" onclick="loadPage('fehlersuche')">
+          <span class="feature-icon">🔧</span>
+          <span>Fehlersuche</span>
         </div>
         <div class="feature-card" onclick="loadPage('lernen')">
           <span class="feature-icon">🎓</span>
@@ -51,7 +65,7 @@
     </div>
   </main>
 
-  <nav class="bottom-nav">
+  <nav class="bottom-nav" id="nav-elektro">
     <button class="nav-btn active" data-page="home" onclick="loadPage('home')">
       <span class="nav-icon">🏠</span>
       <span class="nav-label">Start</span>
@@ -60,17 +74,21 @@
       <span class="nav-icon">🔢</span>
       <span class="nav-label">Rechnen</span>
     </button>
-    <button class="nav-btn" data-page="praxis" onclick="loadPage('praxis')">
-      <span class="nav-icon">🔌</span>
-      <span class="nav-label">Praxis</span>
+    <button class="nav-btn" data-page="erweitert" onclick="loadPage('erweitert')">
+      <span class="nav-icon">📐</span>
+      <span class="nav-label">Erweitert</span>
+    </button>
+    <button class="nav-btn" data-page="wissen" onclick="loadPage('wissen')">
+      <span class="nav-icon">📚</span>
+      <span class="nav-label">Normen</span>
     </button>
     <button class="nav-btn" data-page="sicherungen" onclick="loadPage('sicherungen')">
       <span class="nav-icon">🛡️</span>
       <span class="nav-label">Sicher.</span>
     </button>
-    <button class="nav-btn" data-page="wissen" onclick="loadPage('wissen')">
-      <span class="nav-icon">📚</span>
-      <span class="nav-label">Wissen</span>
+    <button class="nav-btn" data-page="fehlersuche" onclick="loadPage('fehlersuche')">
+      <span class="nav-icon">🔧</span>
+      <span class="nav-label">Fehler</span>
     </button>
     <button class="nav-btn" data-page="lernen" onclick="loadPage('lernen')">
       <span class="nav-icon">🎓</span>

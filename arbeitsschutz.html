@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#f59e0b">
+  <title>Hoher Bausammlung - Arbeitsschutz</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" type="image/svg+xml" href="./icons/icon.svg">
+  <link rel="stylesheet" href="./css/style.css">
+  <style>
+    :root { --primary: #f59e0b; --primary-dark: #d97706; }
+    .app-header { background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%); }
+  </style>
+</head>
+<body class="gewerk-arbeitsschutz">
+  <header class="app-header">
+    <div class="header-content">
+      <select id="gewerk-select" class="gewerk-dropdown" onchange="changeGewerk(this.value)">
+        <option value="elektro">⚡ Elektro</option>
+        <option value="hlsk">🔧 HLSK</option>
+        <option value="statik">🏗️ Statik</option>
+        <option value="brandschutz">🔥 Brandschutz</option>
+        <option value="arbeitsschutz" selected>⚠️ Arbeitsschutz</option>
+        <option value="baurecht">📋 Baurecht</option>
+        <option value="geg">🌱 GEG/Energie</option>
+      </select>
+      <span class="offline-indicator" id="offline-badge">Offline</span>
+    </div>
+  </header>
+
+  <main id="content">
+    <div class="welcome">
+      <h2>⚠️ Arbeitsschutz</h2>
+      <p style="margin-bottom:20px;color:#6b7280">Sicherheit · Vorschriften · Prüffristen</p>
+    </div>
+
+    <div class="tab-container">
+      <div class="tabs" style="flex-wrap:wrap;">
+        <button class="tab active" onclick="switchTab(this, 'psa')">PSA</button>
+        <button class="tab" onclick="switchTab(this, 'gefaehrdung')">Gefährdung</button>
+        <button class="tab" onclick="switchTab(this, 'pruefung')">Prüffristen</button>
+        <button class="tab" onclick="switchTab(this, 'erste-hilfe')">Erste Hilfe</button>
+        <button class="tab" onclick="switchTab(this, 'elektro-sicher')">Elektro</button>
+        <button class="tab" onclick="switchTab(this, 'absturz')">Absturz</button>
+        <button class="tab" onclick="switchTab(this, 'gefahrstoffe')">Gefahrstoffe</button>
+        <button class="tab" onclick="switchTab(this, 'wissen')">Wissen</button>
+      </div>
+
+      <!-- PSA -->
+      <div id="psa" class="tab-content active">
+        <h2>🦺 Persönliche Schutzausrüstung</h2>
+        
+        <h3>PSA-Kategorien</h3>
+        <table class="data-table">
+          <thead><tr><th>Kat.</th><th>Schutz gegen</th><th>Beispiele</th></tr></thead>
+          <tbody>
+            <tr><td>I</td><td>Minimale Risiken</td><td>Gartenhandschuhe, Sonnenbrille</td></tr>
+            <tr><td>II</td><td>Mittlere Risiken</td><td>Schutzhelm, Gehörschutz, Schutzbrille</td></tr>
+            <tr><td>III</td><td>Tödliche/irreversible Risiken</td><td>Absturzsicherung, Atemschutz, Chemikalienschutz</td></tr>
+          </tbody>
+        </table>
+        
+        <h3 style="margin-top:20px">Sicherheitsschuhe (EN ISO 20345)</h3>
+        <table class="data-table">
+          <thead><tr><th>Klasse</th><th>Schutz</th></tr></thead>
+          <tbody>
+            <tr><td>SB</td><td>Zehenschutzkappe 200 J</td></tr>
+            <tr><td>S1</td><td>+ geschl. Fersenbereich, antistatisch, Energieaufnahme</td></tr>
+            <tr><td>S1P</td><td>+ Durchtrittschutz</td></tr>
+            <tr><td>S2</td><td>S1 + Wasserdurchtritt/aufnahme</td></tr>
+            <tr><td>S3</td><td>S2 + Durchtrittschutz + profilierte Sohle</td></tr>
+            <tr><td>S4</td><td>Wie S2, aber Stiefel (wasserdicht)</td></tr>
+            <tr><td>S5</td><td>Wie S3, aber Stiefel (wasserdicht)</td></tr>
+          </tbody>
+        </table>
+        
+        <h3 style="margin-top:20px">Schutzhandschuhe (EN 388)</h3>
+        <table class="data-table">
+          <thead><tr><th>Kennzahl</th><th>Eigenschaft</th><th>Stufen</th></tr></thead>
+          <tbody>
+            <tr><td>1. Zahl</td><td>Abriebfestigkeit</td><td>1-4</td></tr>
+            <tr><td>2. Zahl</td><td>Schnittfestigkeit (Coupe)</td><td>1-5</td></tr>
+            <tr><td>3. Zahl</td><td>Weiterreißfestigkeit</td><td>1-4</td></tr>
+            <tr><td>4. Zahl</td><td>Durchstichfestigkeit</td><td>1-4</td></tr>
+            <tr><td>5. Buchst.</td><td>Schnittfestigkeit (TDM)</td><td>A-F</td></tr>
+            <tr><td>6. Buchst.</td><td>Stoßschutz</td><td>P</td></tr>
+          </tbody>
+        </table>
+        
+        <h3 style="margin-top:20px">Gehörschutz</h3>
+        <table class="data-table">
+          <thead><tr><th>Typ</th><th>Dämmung</th><th>Einsatz</th></tr></thead>
+          <tbody>
+            <tr><td>Ohrstöpsel</td><td>~25-35 dB</td><td>Dauereinsatz</td></tr>
+            <tr><td>Kapselgehörschutz</td><td>~25-35 dB</td><td>Flexibel, kurze Einsätze</td></tr>
+            <tr><td>Otoplastik</td><td>~15-30 dB</td><td>Individuell angepasst</td></tr>
+          </tbody>
+        </table>
+        
+        <div class="warning" style="margin-top:20px">
+          <h4>⚠️ Gehörschutz-Pflicht</h4>
+          <p>Ab 85 dB(A) → Bereitstellungspflicht<br>Ab 85 dB(A) → Tragepflicht</p>
+        </div>
+      </div>
+
+      <!-- GEFÄHRDUNGSBEURTEILUNG -->
+      <div id="gefaehrdung" class="tab-content">
+        <h2>📋 Gefährdungsbeurteilung</h2>
+        
+        <h3>11 Gefährdungsfaktoren (GDA)</h3>
+        <table class="data-table">
+          <tbody>
+            <tr><td>1</td><td>Mechanische Gefährdungen</td></tr>
+            <tr><td>2</td><td>Elektrische Gefährdungen</td></tr>
+            <tr><td>3</td><td>Gefahrstoffe</td></tr>
+            <tr><td>4</td><td>Biologische Arbeitsstoffe</td></tr>
+            <tr><td>5</td><td>Brand- und Explosionsgefährdungen</td></tr>
+            <tr><td>6</td><td>Thermische Gefährdungen</td></tr>
+            <tr><td>7</td><td>Physikalische Einwirkungen</td></tr>
+            <tr><td>8</td><td>Arbeitsumgebungsbedingungen</td></tr>
+            <tr><td>9</td><td>Physische Belastungen</td></tr>
+            <tr><td>10</td><td>Psychische Belastungen</td></tr>
+            <tr><td>11</td><td>Sonstige Gefährdungen</td></tr>
+          </tbody>
+        </table>
+        
+        <h3 style="margin-top:20px">Risikomatrix</h3>
+        <table class="data-table">
+          <thead><tr><th></th><th>Gering</th><th>Mittel</th><th>Hoch</th><th>Sehr hoch</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Häufig</strong></td><td style="background:#fef9c3">3</td><td style="background:#fed7aa">4</td><td style="background:#fecaca">5</td><td style="background:#fecaca">6</td></tr>
+            <tr><td><strong>Gelegentlich</strong></td><td style="background:#dcfce7">2</td><td style="background:#fef9c3">3</td><td style="background:#fed7aa">4</td><td style="background:#fecaca">5</td></tr>
+            <tr><td><strong>Selten</strong></td><td style="background:#dcfce7">1</td><td style="background:#dcfce7">2</td><td style="background:#fef9c3">3</td><td style="background:#fed7aa">4</td></tr>
+            <tr><td><strong>Unwahrsch.</strong></td><td style="background:#dcfce7">1</td><td style="background:#dcfce7">1</td><td style="background:#dcfce7">2</td><td style="background:#fef9c3">3</td></tr>
+          </tbody>
+        </table>
+        <p style="margin-top:10px;font-size:12px;color:#6b7280;">1-2: Akzeptabel | 3-4: Maßnahmen erforderlich | 5-6: Sofortmaßnahmen</p>
+        
+        <h3 style="margin-top:20px">STOP-Prinzip</h3>
+        <div class="info-box">
+          <table class="data-table">
+            <tr><td><strong>S</strong></td><td>Substitution</td><td>Gefährliches durch weniger Gefährliches ersetzen</td></tr>
+            <tr><td><strong>T</strong></td><td>Technische Maßnahmen</td><td>Abschirmung, Absaugung, Automatisierung</td></tr>
+            <tr><td><strong>O</strong></td><td>Organisatorische Maßnahmen</td><td>Arbeitszeit, Zugang, Schulung</td></tr>
+            <tr><td><strong>P</strong></td><td>Persönliche Schutzmaßnahmen</td><td>PSA (letztes Mittel!)</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- PRÜFFRISTEN -->
+      <div id="pruefung" class="tab-content">
+        <h2>🔍 Prüffristen</h2>
+        
+        <h3>Elektrische Anlagen & Betriebsmittel (DGUV V3)</h3>
+        <table class="data-table">
+          <thead><tr><th>Betriebsmittel</th><th>Frist</th></tr></thead>
+          <tbody>
+            <tr><td>Ortsfeste Anlagen</td><td>4 Jahre</td></tr>
+            <tr><td>Ortsveränderliche Geräte (Büro)</td><td>24 Monate</td></tr>
+            <tr><td>Ortsveränderliche Geräte (Baustelle)</td><td>6 Monate</td></tr>
+            <tr><td>Ortsveränderliche Geräte (Fertigung)</td><td>12 Monate</td></tr>
+            <tr><td>PRCD-S (Personenschutzschalter)</td><td>Vor jeder Benutzung</td></tr>
+            <tr><td>Fehlerstrom-Schutzeinrichtung (RCD)</td><td>Alle 6 Monate (Test-Taste)</td></tr>
+          </tbody>
+        </table>
+        
+        <h3 style="margin-top:20px">Leitern & Tritte (DGUV I 208-016)</h3>
+        <table class="data-table">
+          <thead><tr><th>Prüfung</th><th>Frist</th></tr></thead>
+          <tbody>
+            <tr><td>Sichtprüfung durch Benutzer</td><td>Vor jeder Benutzung</td></tr>
+            <tr><td>Regelmäßige Prüfung befähigte Person</td><td>mind. 1× jährlich</td></tr>
+          </tbody>
+        </table>
+        
+        <h3 style="margin-top:20px">PSA gegen Absturz (DGUV R 112-198)</h3>
+        <table class="data-table">
+          <thead><tr><th>Prüfung</th><th>Frist</th></tr></thead>
+          <tbody>
+            <tr><td>Sichtprüfung durch Benutzer</td><td>Vor jeder Benutzung</td></tr>
+            <tr><td>Prüfung befähigte Person</td><td>mind. 1× jährlich</td></tr>
+            <tr><td>Nach Auffangen eines Sturzes</td><td>Sofort außer Betrieb!</td></tr>
+          </tbody>
+        </table>
+        
+        <h3 style="margin-top:20px">Weitere Prüffristen</h3>
+        <table class="data-table">
+          <thead><tr><th>Arbeitsmittel</th><th>Frist</th></tr></thead>
+          <tbody>
+            <tr><td>Hubarbeitsbühnen</td><td>1 Jahr</td></tr>
+            <tr><td>Krane</td><td>1 Jahr</td></tr>
+            <tr><td>Anschlagmittel (Ketten, Seile)</td><td>1 Jahr</td></tr>
+            <tr><td>Druckbehälter</td><td>Innere: 5 J. / Äußere: 10 J.</td></tr>
+            <tr><td>Feuerlöscher</td><td>2 Jahre</td></tr>
+            <tr><td>Erste-Hilfe-Material</td><td>Verfallsdatum beachten</td></tr>
+            <tr><td>Flurförderzeuge (Stapler)</td><td>1 Jahr (UVV)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ERSTE HILFE -->
+      <div id="erste-hilfe" class="tab-content">
+        <h2>🏥 Erste Hilfe</h2>
+        
+        <h3>Ersthelfer-Quote (DGUV V1)</h3>
+        <table class="data-table">
+          <thead><tr><th>Betriebsart</th><th>Ersthelfer</th></tr></thead>
+          <tbody>
+            <tr><td>Verwaltung, Handel</td><td>5% der Beschäftigten</td></tr>
+            <tr><td>Sonstige Betriebe</td><td>10% der Beschäftigten</td></tr>
+            <tr><td>Baustellen >100 Beschäftigte</td><td>10%</td></tr>
+            <tr><td>Kindertagesstätten</td><td>1 Ersthelfer pro Gruppe</td></tr>
+          </tbody>
+        </table>
+        
+        <h3 style="margin-top:20px">Verbandkasten-Inhalt (DIN 13157 klein)</h3>
+        <table class="data-table">
+          <tbody>
+            <tr><td>Heftpflaster 5m × 2,5cm</td><td>1 Stück</td></tr>
+            <tr><td>Wundschnellverband</td><td>8 Stück</td></tr>
+            <tr><td>Fingerkuppen-Verband</td><td>4 Stück</td></tr>
+            <tr><td>Pflasterstrips</td><td>4 Stück</td></tr>
+            <tr><td>Verbandpäckchen K</td><td>1 Stück</td></tr>
+            <tr><td>Verbandpäckchen M</td><td>3 Stück</td></tr>
+            <tr><td>Verbandpäckchen G</td><td>1 Stück</td></tr>
+            <tr><td>Verbandtuch 60×80</td><td>1 Stück</td></tr>
+            <tr><td>Kompresse 10×10</td><td>6 Stück</td></tr>
+            <tr><td>Fixierbinde 6cm</td><td>2 Stück</td></tr>
+            <tr><td>Fixierbinde 8cm</td><td>2 Stück</td></tr>
+            <tr><td>Dreiecktuch</td><td>2 Stück</td></tr>
+            <tr><td>Rettungsdecke</td><td>1 Stück</td></tr>
+            <tr><td>Schere</td><td>1 Stück</td></tr>
+            <tr><td>Handschuhe</td><td>4 Stück</td></tr>
+            <tr><td>Erste-Hilfe-Anleitung</td><td>1 Stück</td></tr>
+            <tr><td>Inhaltsverzeichnis</td><td>1 Stück</td></tr>
+          </tbody>
+        </table>
+        
+        <div class="danger" style="margin-top:20px">
+          <h4>🚨 Notruf 112</h4>
+          <p><strong>5 W-Fragen:</strong></p>
+          <ul style="margin:10px 0 0 20px">
+            <li><strong>Wo</strong> ist es passiert?</li>
+            <li><strong>Was</strong> ist passiert?</li>
+            <li><strong>Wie viele</strong> Verletzte?</li>
+            <li><strong>Welche</strong> Verletzungen?</li>
+            <li><strong>Warten</strong> auf Rückfragen!</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ELEKTRO SICHERHEIT -->
+      <div id="elektro-sicher" class="tab-content">
+        <h2>⚡ Elektrosicherheit</h2>
+        
+        <h3>5 Sicherheitsregeln</h3>
+        <div class="info-box">
+          <ol style="margin:10px 0 0 20px">
+            <li><strong>Freischalten</strong></li>
+            <li><strong>Gegen Wiedereinschalten sichern</strong></li>
+            <li><strong>Spannungsfreiheit feststellen</strong></li>
+            <li><strong>Erden und Kurzschließen</strong></li>
+            <li><strong>Benachbarte unter Spannung stehende Teile abdecken oder abschranken</strong></li>
+          </ol>
+        </div>
+        
+        <h3 style="margin-top:20px">Gefährdung durch Strom</h3>
+        <table class="data-table">
+          <thead><tr><th>Stromstärke</th><th>Wirkung (AC 50Hz)</th></tr></thead>
+          <tbody>
+            <tr><td>0,5 mA</td><td>Wahrnehmungsschwelle</td></tr>
+            <tr><td>10 mA</td><td>Loslassschwelle</td></tr>
+            <tr><td>30 mA</td><td>Atemstillstand möglich</td></tr>
+            <tr><td>50 mA</td><td>Herzkammerflimmern möglich</td></tr>
+            <tr><td>>50 mA</td><td>Herzkammerflimmern wahrscheinlich</td></tr>
+          </tbody>
+        </table>
+        
+        <h3 style="margin-top:20px">Schutzklassen</h3>
+        <table class="data-table">
+          <thead><tr><th>Klasse</th><th>Symbol</th><th>Schutzmaßnahme</th></tr></thead>
+          <tbody>
+            <tr><td>0</td><td>—</td><td>Nur Basisisolierung (nicht mehr zulässig)</td></tr>
+            <tr><td>I</td><td>⏚</td><td>Schutzleiter (PE)</td></tr>
+            <tr><td>II</td><td>◻◻</td><td>Schutzisolierung (doppelt/verstärkt)</td></tr>
+            <tr><td>III</td><td>◇</td><td>Schutzkleinspannung (SELV/PELV)</td></tr>
+          </tbody>
+        </table>
+        
+        <h3 style="margin-top:20px">Mindestabstände</h3>
+        <table class="data-table">
+          <thead><tr><th>Spannung</th><th>Abstand</th></tr></thead>
+          <tbody>
+            <tr><td>bis 1 kV</td><td>1,0 m</td></tr>
+            <tr><td>1 - 30 kV</td><td>3,0 m</td></tr>
+            <tr><td>30 - 110 kV</td><td>4,0 m</td></tr>
+            <tr><td>110 - 220 kV</td><td>5,0 m</td></tr>
+            <tr><td>220 - 380 kV</td><td>6,0 m</td></tr>
+            <tr><td>unbekannt</td><td>6,0 m</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ABSTURZSICHERUNG -->
+      <div id="absturz" class="tab-content">
+        <h2>🪜 Absturzsicherung</h2>
+        
+        <h3>Absturzhöhen (DGUV R 100-001)</h3>
+        <table class="data-table">
+          <thead><tr><th>Arbeitsplatz</th><th>Absturzhöhe</th></tr></thead>
+          <tbody>
+            <tr><td>Allgemein</td><td>> 1,0 m</td></tr>
+            <tr><td>An/über Wasser, Stoffen</td><td>> 0 m (sofort)</td></tr>
+            <tr><td>Baustelle allgemein</td><td>> 2,0 m</td></tr>
+            <tr><td>Baustelle Gerüste</td><td>> 2,0 m (3. Gerüstlage)</td></tr>
+            <tr><td>Dacharbeiten >20° Neigung</td><td>> 3,0 m</td></tr>
+            <tr><td>Dacharbeiten ≤20° Neigung</td><td>> 3,0 m</td></tr>
+          </tbody>
+        </table>
+        
+        <h3 style="margin-top:20px">Schutzmaßnahmen (Rangfolge)</h3>
+        <div class="info-box">
+          <ol style="margin:10px 0 0 20px">
+            <li>Absturzkante vermeiden (Planung)</li>
+            <li>Seitenschutz (Geländer)</li>
+            <li>Auffangeinrichtungen (Fanggerüst, Netz)</li>
+            <li>PSA gegen Absturz (letztes Mittel)</li>
+          </ol>
+        </div>
+        
+        <h3 style="margin-top:20px">Seitenschutz / Geländer</h3>
+        <table class="data-table">
+          <tbody>
+            <tr><td>Geländerhöhe</td><td>min. 1,0 m</td></tr>
+            <tr><td>Zwischenholm</td><td>Zwischenraum max. 47 cm</td></tr>
+            <tr><td>Fußleiste</td><td>min. 5 cm hoch</td></tr>
+            <tr><td>Öffnungen</td><td>max. 18 cm zwischen Teilen</td></tr>
+          </tbody>
+        </table>
+        
+        <h3 style="margin-top:20px">Leitern - Aufstellwinkel</h3>
+        <table class="data-table">
+          <thead><tr><th>Leiterart</th><th>Winkel</th></tr></thead>
+          <tbody>
+            <tr><td>Anlegeleiter</td><td>65° - 75°</td></tr>
+            <tr><td>Stehleiter</td><td>max. 70°</td></tr>
+            <tr><td>Überstand bei Ausstieg</td><td>min. 1,0 m</td></tr>
+          </tbody>
+        </table>
+        
+        <div class="warning" style="margin-top:20px">
+          <h4>⚠️ Leitern-Regeln</h4>
+          <ul style="margin:10px 0 0 20px">
+            <li>Nicht seitlich hinauslehnen</li>
+            <li>Standhöhe max. 7 m</li>
+            <li>Beschäftigungsdauer max. 2 h</li>
+            <li>Traglast max. 150 kg inkl. Werkzeug</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- GEFAHRSTOFFE -->
+      <div id="gefahrstoffe" class="tab-content">
+        <h2>☠️ Gefahrstoffe</h2>
+        
+        <h3>GHS-Piktogramme</h3>
+        <table class="data-table">
+          <thead><tr><th>Symbol</th><th>Bezeichnung</th><th>Gefahr</th></tr></thead>
+          <tbody>
+            <tr><td>💥</td><td>GHS01</td><td>Explodierende Bombe</td></tr>
+            <tr><td>🔥</td><td>GHS02</td><td>Flamme (entzündbar)</td></tr>
+            <tr><td>⭕</td><td>GHS03</td><td>Flamme über Kreis (oxidierend)</td></tr>
+            <tr><td>🧪</td><td>GHS04</td><td>Gasflasche (unter Druck)</td></tr>
+            <tr><td>⚗️</td><td>GHS05</td><td>Ätzwirkung</td></tr>
+            <tr><td>☠️</td><td>GHS06</td><td>Totenkopf (akut toxisch)</td></tr>
+            <tr><td>❗</td><td>GHS07</td><td>Ausrufezeichen (Reizend)</td></tr>
+            <tr><td>🏥</td><td>GHS08</td><td>Gesundheitsgefahr (CMR)</td></tr>
+            <tr><td>🐟</td><td>GHS09</td><td>Umwelt (gewässergefährdend)</td></tr>
+          </tbody>
+        </table>
+        
+        <h3 style="margin-top:20px">H-Sätze (Gefahrenhinweise)</h3>
+        <table class="data-table">
+          <thead><tr><th>Bereich</th><th>Bedeutung</th></tr></thead>
+          <tbody>
+            <tr><td>H2xx</td><td>Physikalische Gefahren</td></tr>
+            <tr><td>H3xx</td><td>Gesundheitsgefahren</td></tr>
+            <tr><td>H4xx</td><td>Umweltgefahren</td></tr>
+          </tbody>
+        </table>
+        
+        <h3 style="margin-top:20px">Häufige H-Sätze</h3>
+        <table class="data-table">
+          <tbody>
+            <tr><td>H220</td><td>Extrem entzündbares Gas</td></tr>
+            <tr><td>H225</td><td>Flüssigkeit und Dampf leicht entzündbar</td></tr>
+            <tr><td>H301</td><td>Giftig bei Verschlucken</td></tr>
+            <tr><td>H314</td><td>Verursacht schwere Verätzungen</td></tr>
+            <tr><td>H315</td><td>Verursacht Hautreizungen</td></tr>
+            <tr><td>H317</td><td>Kann allergische Hautreaktionen verursachen</td></tr>
+            <tr><td>H319</td><td>Verursacht schwere Augenreizung</td></tr>
+            <tr><td>H334</td><td>Kann bei Einatmen Allergie verursachen</td></tr>
+            <tr><td>H350</td><td>Kann Krebs erzeugen</td></tr>
+            <tr><td>H400</td><td>Sehr giftig für Wasserorganismen</td></tr>
+          </tbody>
+        </table>
+        
+        <div class="info-box" style="margin-top:20px">
+          <h4>📋 Sicherheitsdatenblatt (SDB)</h4>
+          <p>16 Abschnitte, muss am Arbeitsplatz verfügbar sein!</p>
+          <p style="font-size:12px;color:#6b7280;margin-top:5px;">Wichtig: Abschnitt 7 (Handhabung), 8 (Schutzmaßnahmen), 4 (Erste Hilfe)</p>
+        </div>
+      </div>
+
+      <!-- WISSEN -->
+      <div id="wissen" class="tab-content">
+        <h2>📚 Wissen Arbeitsschutz</h2>
+        
+        <div class="knowledge-card" onclick="this.classList.toggle('active')">
+          <div class="knowledge-header"><span>⏰ Arbeitszeiten (ArbZG)</span><span class="toggle-icon">▼</span></div>
+          <div class="knowledge-content">
+            <table class="data-table">
+              <tr><td>Tägliche Höchstarbeitszeit</td><td>8 h (ausnahmsweise 10 h)</td></tr>
+              <tr><td>Wöchentliche Höchstarbeitszeit</td><td>48 h (Ø 6 Monate)</td></tr>
+              <tr><td>Ruhezeit nach Arbeit</td><td>min. 11 h ununterbrochen</td></tr>
+              <tr><td>Pause ab 6 h</td><td>min. 30 min</td></tr>
+              <tr><td>Pause ab 9 h</td><td>min. 45 min</td></tr>
+              <tr><td>Nachtarbeit</td><td>23:00 - 06:00 Uhr</td></tr>
+            </table>
+          </div>
+        </div>
+        
+        <div class="knowledge-card" onclick="this.classList.toggle('active')">
+          <div class="knowledge-header"><span>🌡️ Raumklima (ASR A3.5)</span><span class="toggle-icon">▼</span></div>
+          <div class="knowledge-content">
+            <table class="data-table">
+              <tr><td>Büro, leichte Arbeit</td><td>+20°C bis +26°C</td></tr>
+              <tr><td>Mittelschwere Arbeit</td><td>+17°C bis +26°C</td></tr>
+              <tr><td>Schwere Arbeit</td><td>+12°C bis +26°C</td></tr>
+              <tr><td>Lufttemperatur max.</td><td>+26°C (Maßnahmen ab +26°C)</td></tr>
+              <tr><td>Lufttemperatur kritisch</td><td>+35°C (besondere Maßnahmen)</td></tr>
+              <tr><td>Relative Luftfeuchte</td><td>30% - 65%</td></tr>
+            </table>
+          </div>
+        </div>
+        
+        <div class="knowledge-card" onclick="this.classList.toggle('active')">
+          <div class="knowledge-header"><span>💡 Beleuchtung (ASR A3.4)</span><span class="toggle-icon">▼</span></div>
+          <div class="knowledge-content">
+            <table class="data-table">
+              <thead><tr><th>Tätigkeit</th><th>Lux</th></tr></thead>
+              <tbody>
+                <tr><td>Verkehrsflächen, Flure</td><td>100</td></tr>
+                <tr><td>Lager</td><td>100</td></tr>
+                <tr><td>Grobe Arbeiten</td><td>200</td></tr>
+                <tr><td>Büro (Schreiben, Lesen)</td><td>500</td></tr>
+                <tr><td>Technisches Zeichnen</td><td>750</td></tr>
+                <tr><td>Feinmechanik</td><td>1000</td></tr>
+                <tr><td>Präzisionsarbeit</td><td>1500</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+        <div class="knowledge-card" onclick="this.classList.toggle('active')">
+          <div class="knowledge-header"><span>🔊 Lärm (DGUV V3, LärmVibrationsArbSchV)</span><span class="toggle-icon">▼</span></div>
+          <div class="knowledge-content">
+            <table class="data-table">
+              <tr><td>Büro empfohlen</td><td>< 55 dB(A)</td></tr>
+              <tr><td>Unterer Auslösewert</td><td>80 dB(A) → Gehörschutz anbieten</td></tr>
+              <tr><td>Oberer Auslösewert</td><td>85 dB(A) → Gehörschutz Pflicht</td></tr>
+              <tr><td>Expositionsgrenzwert</td><td>87 dB(A) (mit Gehörschutz)</td></tr>
+            </table>
+            <p style="margin-top:10px;font-size:12px;color:#dc2626;">+3 dB = Verdopplung der Schallenergie!</p>
+          </div>
+        </div>
+        
+        <div class="knowledge-card" onclick="this.classList.toggle('active')">
+          <div class="knowledge-header"><span>🏋️ Lasthandhabung (LasthandhabV)</span><span class="toggle-icon">▼</span></div>
+          <div class="knowledge-content">
+            <h4>Richtwerte (gelegentlich)</h4>
+            <table class="data-table">
+              <thead><tr><th>Alter</th><th>Männer</th><th>Frauen</th></tr></thead>
+              <tbody>
+                <tr><td>15-18 Jahre</td><td>35 kg</td><td>15 kg</td></tr>
+                <tr><td>18-40 Jahre</td><td>55 kg</td><td>25 kg</td></tr>
+                <tr><td>> 40 Jahre</td><td>45 kg</td><td>20 kg</td></tr>
+              </tbody>
+            </table>
+            <p style="margin-top:10px;font-size:12px;color:#6b7280;">Bei häufigem Heben deutlich geringere Werte!</p>
+          </div>
+        </div>
+        
+        <div class="knowledge-card" onclick="this.classList.toggle('active')">
+          <div class="knowledge-header"><span>📋 Wichtige Vorschriften</span><span class="toggle-icon">▼</span></div>
+          <div class="knowledge-content">
+            <table class="data-table">
+              <tr><td><strong>ArbSchG</strong></td><td>Arbeitsschutzgesetz (Grundgesetz)</td></tr>
+              <tr><td><strong>ArbStättV</strong></td><td>Arbeitsstättenverordnung</td></tr>
+              <tr><td><strong>BetrSichV</strong></td><td>Betriebssicherheitsverordnung</td></tr>
+              <tr><td><strong>GefStoffV</strong></td><td>Gefahrstoffverordnung</td></tr>
+              <tr><td><strong>PSA-BV</strong></td><td>PSA-Benutzungsverordnung</td></tr>
+              <tr><td><strong>ArbZG</strong></td><td>Arbeitszeitgesetz</td></tr>
+              <tr><td><strong>ASR</strong></td><td>Arbeitsstättenregeln</td></tr>
+              <tr><td><strong>TRBS</strong></td><td>Technische Regeln Betriebssicherheit</td></tr>
+              <tr><td><strong>TRGS</strong></td><td>Technische Regeln Gefahrstoffe</td></tr>
+              <tr><td><strong>DGUV V1</strong></td><td>Grundsätze der Prävention</td></tr>
+              <tr><td><strong>DGUV V3</strong></td><td>Elektrische Anlagen und Betriebsmittel</td></tr>
+            </table>
+          </div>
+        </div>
+        
+        <div class="knowledge-card" onclick="this.classList.toggle('active')">
+          <div class="knowledge-header"><span>🚧 Sicherheitskennzeichnung (ASR A1.3)</span><span class="toggle-icon">▼</span></div>
+          <div class="knowledge-content">
+            <table class="data-table">
+              <tr><td style="background:#dc2626;color:white">Rot</td><td>Verbot, Brandschutz</td><td>Kreis, Querbalken</td></tr>
+              <tr><td style="background:#f59e0b;color:white">Gelb/Orange</td><td>Warnung</td><td>Dreieck</td></tr>
+              <tr><td style="background:#2563eb;color:white">Blau</td><td>Gebot</td><td>Kreis</td></tr>
+              <tr><td style="background:#16a34a;color:white">Grün</td><td>Rettung, Erste Hilfe</td><td>Rechteck</td></tr>
+              <tr><td style="background:#dc2626;color:white">Rot</td><td>Brandschutz</td><td>Rechteck</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <nav class="bottom-nav">
+    <button class="nav-btn active" onclick="switchTab(document.querySelector('.tab'), 'psa')">
+      <span class="nav-icon">🦺</span><span class="nav-label">PSA</span>
+    </button>
+    <button class="nav-btn" onclick="switchTab(document.querySelectorAll('.tab')[2], 'pruefung')">
+      <span class="nav-icon">🔍</span><span class="nav-label">Prüfung</span>
+    </button>
+    <button class="nav-btn" onclick="switchTab(document.querySelectorAll('.tab')[3], 'erste-hilfe')">
+      <span class="nav-icon">🏥</span><span class="nav-label">Erste Hilfe</span>
+    </button>
+    <button class="nav-btn" onclick="switchTab(document.querySelectorAll('.tab')[4], 'elektro-sicher')">
+      <span class="nav-icon">⚡</span><span class="nav-label">Elektro</span>
+    </button>
+    <button class="nav-btn" onclick="switchTab(document.querySelectorAll('.tab')[7], 'wissen')">
+      <span class="nav-icon">📚</span><span class="nav-label">Wissen</span>
+    </button>
+  </nav>
+
+  <script src="./js/app.js"></script>
+  <style>
+    .knowledge-card { background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 12px; overflow: hidden; }
+    .knowledge-header { display: flex; justify-content: space-between; align-items: center; padding: 15px; cursor: pointer; font-weight: 600; }
+    .knowledge-content { display: none; padding: 0 15px 15px; border-top: 1px solid #e5e7eb; }
+    .knowledge-card.active .knowledge-content { display: block; }
+    .knowledge-card.active .toggle-icon { transform: rotate(180deg); }
+    .toggle-icon { transition: transform 0.2s; }
+  </style>
+</body>
+</html>

@@ -1,5 +1,5 @@
 /**
- * ElektroProfi Ultimate - Berechnungen
+ * Hoher Elektrosammlung - Berechnungen
  * Alle Formeln nach DIN VDE korrigiert
  */
 
@@ -302,6 +302,112 @@ function calculateCableSize() {
   }
   
   document.getElementById('leitung-result').innerHTML = html;
+}
+
+// ============================================
+// STROMSTÄRKE / AMPERE BERECHNUNG
+// ============================================
+function calculateAmpere() {
+  const netz = document.getElementById('amp-netz').value;
+  const leistung = parseFloat(document.getElementById('amp-leistung').value);
+  const einheit = parseFloat(document.getElementById('amp-einheit').value);
+  const cosPhi = parseFloat(document.getElementById('amp-cosphi').value);
+  const eta = parseFloat(document.getElementById('amp-eta').value);
+  
+  if (isNaN(leistung) || leistung <= 0) {
+    document.getElementById('amp-result').innerHTML = '<div class="danger">Bitte Leistung eingeben</div>';
+    return;
+  }
+  
+  // Netz parsen: "230-ac1" -> spannung=230, art="ac1"
+  const [spannungStr, art] = netz.split('-');
+  const spannung = parseFloat(spannungStr);
+  const isDC = art === 'dc';
+  const is3Phase = art === 'ac3';
+  
+  const P = leistung * einheit; // Leistung in Watt
+  const Pmech = P / eta; // Aufgenommene elektrische Leistung bei Motor
+  
+  let strom, formel, scheinleistung;
+  
+  if (isDC) {
+    // Gleichstrom: I = P / U
+    strom = Pmech / spannung;
+    formel = `I = P / U = ${Pmech.toFixed(0)} W / ${spannung} V`;
+    scheinleistung = Pmech;
+  } else if (!is3Phase) {
+    // Wechselstrom 1~: I = P / (U × cos φ)
+    strom = Pmech / (spannung * cosPhi);
+    scheinleistung = Pmech / cosPhi;
+    formel = `I = P / (U × cos φ) = ${Pmech.toFixed(0)} W / (${spannung} V × ${cosPhi})`;
+  } else {
+    // Drehstrom 3~: I = P / (√3 × U × cos φ)
+    strom = Pmech / (Math.sqrt(3) * spannung * cosPhi);
+    scheinleistung = Pmech / cosPhi;
+    formel = `I = P / (√3 × U × cos φ) = ${Pmech.toFixed(0)} W / (1,732 × ${spannung} V × ${cosPhi})`;
+  }
+  
+  // Empfohlene Sicherung
+  const sicherungen = [6, 10, 13, 16, 20, 25, 32, 40, 50, 63, 80, 100, 125, 160, 200, 250, 315, 400];
+  const empfohlene = sicherungen.find(s => s >= strom * 1.1) || '>400';
+  
+  // Empfohlener Querschnitt (vereinfacht, Verlegeart C)
+  let querschnitt;
+  if (strom <= 13) querschnitt = '1,5 mm²';
+  else if (strom <= 18) querschnitt = '2,5 mm²';
+  else if (strom <= 25) querschnitt = '4 mm²';
+  else if (strom <= 32) querschnitt = '6 mm²';
+  else if (strom <= 44) querschnitt = '10 mm²';
+  else if (strom <= 59) querschnitt = '16 mm²';
+  else if (strom <= 77) querschnitt = '25 mm²';
+  else if (strom <= 96) querschnitt = '35 mm²';
+  else if (strom <= 117) querschnitt = '50 mm²';
+  else if (strom <= 149) querschnitt = '70 mm²';
+  else if (strom <= 180) querschnitt = '95 mm²';
+  else if (strom <= 208) querschnitt = '120 mm²';
+  else querschnitt = '>120 mm² (prüfen)';
+  
+  let artText = isDC ? 'Gleichstrom' : (is3Phase ? 'Drehstrom 3~' : 'Wechselstrom 1~');
+  
+  document.getElementById('amp-result').innerHTML = `
+    <div class="result">
+      <h3>Ergebnis</h3>
+      <div class="result-item">
+        <span class="result-label">Stromstärke I:</span>
+        <span class="result-value"><strong>${strom.toFixed(2)} A</strong></span>
+      </div>
+      ${!isDC ? `
+      <div class="result-item">
+        <span class="result-label">Scheinleistung S:</span>
+        <span class="result-value">${(scheinleistung/1000).toFixed(2)} kVA</span>
+      </div>
+      ` : ''}
+      <div class="result-item">
+        <span class="result-label">Empf. Sicherung:</span>
+        <span class="result-value">${empfohlene} A</span>
+      </div>
+      <div class="result-item">
+        <span class="result-label">Empf. Querschnitt:</span>
+        <span class="result-value">${querschnitt}</span>
+      </div>
+    </div>
+    <div class="info-box">
+      <h4>📐 Formel (${artText})</h4>
+      <p>${formel}</p>
+      <p>= <strong>${strom.toFixed(2)} A</strong></p>
+      ${eta < 1 ? `<p style="font-size:12px;color:#6b7280;">η = ${(eta*100).toFixed(0)}% → Pelektr = ${Pmech.toFixed(0)} W</p>` : ''}
+    </div>`;
+}
+
+// Update Ampere fields visibility based on DC/AC selection
+function updateAmpFields() {
+  const netz = document.getElementById('amp-netz');
+  if (!netz) return;
+  const isDC = netz.value.includes('-dc');
+  const cosPhiGroup = document.getElementById('amp-cosphi-group');
+  if (cosPhiGroup) {
+    cosPhiGroup.style.display = isDC ? 'none' : 'block';
+  }
 }
 
 // ============================================
@@ -788,16 +894,45 @@ function calculateCableWeight() {
 // TRASSEN-DIMENSIONIERUNG
 // ============================================
 function calculateTray() {
-  const anzahl = parseInt(document.getElementById('trasse-anzahl').value);
-  const durchmesser = parseFloat(document.getElementById('trasse-durchmesser').value);
+  const methode = document.getElementById('trasse-methode')?.value || 'manuell';
   const fuellgrad = parseInt(document.getElementById('trasse-fuellgrad').value) / 100;
   
-  if (isNaN(anzahl) || isNaN(durchmesser) || anzahl <= 0 || durchmesser <= 0) {
-    return showError('Bitte alle Felder ausfüllen');
-  }
+  let kabelFlaeche = 0;
+  let kabelListe = '';
   
-  // Gesamtfläche der Kabel
-  const kabelFlaeche = anzahl * Math.PI * Math.pow(durchmesser / 2, 2);
+  if (methode === 'manuell') {
+    const anzahl = parseInt(document.getElementById('trasse-anzahl').value);
+    const durchmesser = parseFloat(document.getElementById('trasse-durchmesser').value);
+    
+    if (isNaN(anzahl) || isNaN(durchmesser) || anzahl <= 0 || durchmesser <= 0) {
+      return showError('Bitte alle Felder ausfüllen');
+    }
+    
+    kabelFlaeche = anzahl * Math.PI * Math.pow(durchmesser / 2, 2);
+    kabelListe = `${anzahl}× Ø${durchmesser}mm`;
+  } else {
+    // Aus Kabel-Auswahl berechnen
+    const eintraege = document.querySelectorAll('.kabel-eintrag');
+    let details = [];
+    
+    eintraege.forEach(eintrag => {
+      const typSelect = eintrag.querySelector('.kabel-typ');
+      const mengeInput = eintrag.querySelector('.kabel-menge');
+      if (typSelect && mengeInput) {
+        const durchmesser = parseFloat(typSelect.value);
+        const menge = parseInt(mengeInput.value) || 0;
+        if (menge > 0 && durchmesser > 0) {
+          kabelFlaeche += menge * Math.PI * Math.pow(durchmesser / 2, 2);
+          details.push(`${menge}× ${typSelect.options[typSelect.selectedIndex].text}`);
+        }
+      }
+    });
+    
+    if (kabelFlaeche === 0) {
+      return showError('Bitte mindestens ein Kabel mit Anzahl angeben');
+    }
+    kabelListe = details.join(', ');
+  }
   
   // Benötigte Trassenfläche (mit Füllgrad)
   const benoetigteFläche = kabelFlaeche / fuellgrad;
@@ -814,22 +949,67 @@ function calculateTray() {
     <div class="result">
       <h3>Ergebnis</h3>
       <div class="result-item">
+        <span class="result-label">Kabel:</span>
+        <span class="result-value" style="font-size:12px;">${kabelListe}</span>
+      </div>
+      <div class="result-item">
         <span class="result-label">Kabelfläche gesamt:</span>
         <span class="result-value">${kabelFlaeche.toFixed(0)} mm²</span>
       </div>
       <div class="result-item">
-        <span class="result-label">Benötigte Trassenfläche:</span>
+        <span class="result-label">Benötigt (${(fuellgrad*100).toFixed(0)}% Füllung):</span>
         <span class="result-value">${benoetigteFläche.toFixed(0)} mm²</span>
-      </div>
-      <div class="result-item">
-        <span class="result-label">Berechnete Breite:</span>
-        <span class="result-value">${benotigteBreite.toFixed(0)} mm</span>
       </div>
       <div class="result-item">
         <span class="result-label">Empfohlene Trasse:</span>
         <span class="result-value">${empfohleneBreite} × ${trassenHoehe} mm</span>
       </div>
     </div>`;
+}
+
+// Trasse Hilfsfunktionen
+function updateTrasseFields() {
+  const methode = document.getElementById('trasse-methode').value;
+  const manuellFields = document.getElementById('trasse-manuell-fields');
+  const auswahlFields = document.getElementById('trasse-auswahl-fields');
+  
+  if (methode === 'manuell') {
+    manuellFields.style.display = 'block';
+    auswahlFields.style.display = 'none';
+  } else {
+    manuellFields.style.display = 'none';
+    auswahlFields.style.display = 'block';
+  }
+}
+
+function addKabelZeile() {
+  const liste = document.getElementById('kabel-liste');
+  const div = document.createElement('div');
+  div.className = 'kabel-eintrag';
+  div.style.cssText = 'display:flex;gap:10px;margin-bottom:10px;';
+  div.innerHTML = `
+    <select class="kabel-typ" style="flex:2">
+      <option value="9.5">NYM-J 3×1,5 (Ø9,5)</option>
+      <option value="11">NYM-J 3×2,5 (Ø11)</option>
+      <option value="11">NYM-J 5×1,5 (Ø11)</option>
+      <option value="13">NYM-J 5×2,5 (Ø13)</option>
+      <option value="15">NYM-J 5×4 (Ø15)</option>
+      <option value="17">NYM-J 5×6 (Ø17)</option>
+      <option value="20">NYM-J 5×10 (Ø20)</option>
+      <option value="24">NYM-J 5×16 (Ø24)</option>
+      <option value="14">NYY-J 5×1,5 (Ø14)</option>
+      <option value="16">NYY-J 5×2,5 (Ø16)</option>
+      <option value="20">NYY-J 5×6 (Ø20)</option>
+      <option value="24">NYY-J 5×10 (Ø24)</option>
+      <option value="28">NYY-J 5×16 (Ø28)</option>
+      <option value="33">NYY-J 5×25 (Ø33)</option>
+      <option value="6">Cat.6 (Ø6)</option>
+      <option value="7">Cat.7 (Ø7)</option>
+    </select>
+    <input type="number" class="kabel-menge" placeholder="Anzahl" style="flex:1" value="1">
+    <button type="button" onclick="this.parentElement.remove()" style="background:#dc2626;color:white;border:none;padding:5px 10px;border-radius:4px;">×</button>
+  `;
+  liste.appendChild(div);
 }
 
 // Helper

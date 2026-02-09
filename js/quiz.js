@@ -1,5 +1,5 @@
 /**
- * ElektroProfi Ultimate - Quiz System
+ * Hoher Elektrosammlung - Quiz System
  */
 
 const quizData = {
@@ -85,6 +85,16 @@ function showQuestion() {
   
   const q = currentQuiz[currentIndex];
   
+  // Antworten mischen mit Index-Tracking
+  const shuffledAnswers = q.a.map((text, originalIndex) => ({
+    text: text,
+    isCorrect: originalIndex === q.c
+  }));
+  shuffleArray(shuffledAnswers);
+  
+  // Neuen Index der richtigen Antwort finden
+  const correctIndex = shuffledAnswers.findIndex(a => a.isCorrect);
+  
   let html = `
     <div class="quiz-card">
       <div style="color:#6b7280;margin-bottom:10px;font-size:14px">
@@ -93,8 +103,8 @@ function showQuestion() {
       <div class="quiz-question">${q.q}</div>
       <div class="quiz-options">`;
   
-  q.a.forEach((option, i) => {
-    html += `<div class="quiz-option" onclick="selectAnswer(${i})">${option}</div>`;
+  shuffledAnswers.forEach((option, i) => {
+    html += `<div class="quiz-option" data-correct="${option.isCorrect}" onclick="selectAnswer(${i}, ${correctIndex})">${option.text}</div>`;
   });
   
   html += `</div></div>`;
@@ -102,8 +112,7 @@ function showQuestion() {
   document.getElementById(container).innerHTML = html;
 }
 
-function selectAnswer(index) {
-  const q = currentQuiz[currentIndex];
+function selectAnswer(index, correctIndex) {
   const options = document.querySelectorAll('.quiz-option');
   
   // Klicks deaktivieren
@@ -114,9 +123,9 @@ function selectAnswer(index) {
   
   setTimeout(() => {
     // Richtige Antwort zeigen
-    options[q.c].classList.add('correct');
+    options[correctIndex].classList.add('correct');
     
-    if (index !== q.c) {
+    if (index !== correctIndex) {
       options[index].classList.add('wrong');
     } else {
       score++;

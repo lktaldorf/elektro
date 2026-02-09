@@ -1,7 +1,6 @@
 /**
- * ElektroProfi Ultimate - Haupt-App v2.1
+ * Hoher Elektrosammlung - Haupt-App v2.3
  * PWA mit Offline-Support
- * BUILD: 2026-02-07-fix
  */
 
 // Service Worker registrieren
@@ -51,8 +50,8 @@ function showUpdateNotification() {
 function showTab(tabId) {
   const container = event.target.closest('.tab-container') || document.getElementById('content');
   
-  // Alle Contents ausblenden
-  container.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
+  // Alle Contents ausblenden (beide Klassen unterstützen)
+  container.querySelectorAll('.content, .tab-content').forEach(c => c.classList.remove('active'));
   container.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   
   // Gewählten Tab aktivieren
@@ -67,9 +66,9 @@ function showTab(tabId) {
 function switchTab(button, tabId) {
   const container = button.closest('.tab-container') || document;
   
-  // Alle Tabs deaktivieren
+  // Alle Tabs deaktivieren (beide Klassen unterstützen)
   container.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  container.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  container.querySelectorAll('.content, .tab-content').forEach(c => c.classList.remove('active'));
   
   // Gewählten aktivieren
   button.classList.add('active');
@@ -104,7 +103,7 @@ function loadPage(pageName) {
           </div>
           <div class="feature-card" onclick="loadPage('erweitert')">
             <span class="feature-icon">📐</span>
-            <span>Erweitert</span>
+            <span>Erweiterte Berechn.</span>
           </div>
           <div class="feature-card" onclick="loadPage('praxis')">
             <span class="feature-icon">🔌</span>
@@ -116,7 +115,11 @@ function loadPage(pageName) {
           </div>
           <div class="feature-card" onclick="loadPage('wissen')">
             <span class="feature-icon">📚</span>
-            <span>Wissen</span>
+            <span>Normen</span>
+          </div>
+          <div class="feature-card" onclick="loadPage('fehlersuche')">
+            <span class="feature-icon">🔧</span>
+            <span>Fehlersuche</span>
           </div>
           <div class="feature-card" onclick="loadPage('lernen')">
             <span class="feature-icon">🎓</span>
@@ -225,15 +228,39 @@ function loadSettings(key, defaultValue = null) {
   }
 }
 
+// Aktuelles Gewerk
+let currentGewerk = localStorage.getItem('gewerk') || 'elektro';
+
+// Gewerk wechseln
+function changeGewerk(gewerk) {
+  currentGewerk = gewerk;
+  localStorage.setItem('gewerk', gewerk);
+  
+  // Body-Klasse ändern für CSS
+  document.body.className = 'gewerk-' + gewerk;
+  
+  // Zur Gewerk-spezifischen Seite navigieren
+  window.location.href = gewerk === 'elektro' ? 'index.html' : gewerk + '.html';
+}
+
 // Initialisierung beim Laden
 document.addEventListener('DOMContentLoaded', () => {
   // Offline-Status prüfen
   updateOnlineStatus();
   
-  console.log('ElektroProfi Ultimate v2.1 (Build 2026-02-07) geladen');
+  // Gewerk aus localStorage laden
+  const savedGewerk = localStorage.getItem('gewerk') || 'elektro';
+  document.body.className = 'gewerk-' + savedGewerk;
+  
+  const gewerkSelect = document.getElementById('gewerk-select');
+  if (gewerkSelect) {
+    gewerkSelect.value = savedGewerk;
+  }
+  
+  console.log('Hoher Bausammlung v2.5 geladen - ' + savedGewerk.toUpperCase());
 });
 
 // Export für Module
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { showTab, switchTab, loadPage, toggleTroubleshoot, formatNumber, validateNumber };
+  module.exports = { showTab, switchTab, loadPage, toggleTroubleshoot, formatNumber, validateNumber, changeGewerk };
 }

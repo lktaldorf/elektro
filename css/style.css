@@ -583,6 +583,7 @@ input:focus, select:focus {
 .zone-0 { background: var(--danger); }
 .zone-1 { background: var(--warning); color: #000; }
 .zone-2 { background: var(--success); }
+.zone-3 { background: #3b82f6; }
 
 /* Drawing Containers */
 .bad-zeichnung-container,
@@ -689,6 +690,114 @@ input:focus, select:focus {
     padding: 0.4rem 0.3rem;
   }
 }
+
+/* Troubleshoot Cards */
+.troubleshoot-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.troubleshoot-card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 2px 8px rgba(30, 64, 175, 0.1);
+}
+
+.troubleshoot-card.expanded {
+  border-color: var(--primary);
+  background: #f8fafc;
+}
+
+.troubleshoot-card h4 {
+  margin: 0;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.troubleshoot-card h4::after {
+  content: '▼';
+  font-size: 0.7rem;
+  color: var(--gray-400);
+  transition: transform 0.2s ease;
+}
+
+.troubleshoot-card.expanded h4::after {
+  transform: rotate(180deg);
+  color: var(--primary);
+}
+
+.troubleshoot-solutions {
+  display: none;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+
+.troubleshoot-solutions.visible {
+  display: block;
+}
+
+.troubleshoot-solutions ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.troubleshoot-solutions li {
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+/* Gewerk Dropdown */
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.gewerk-dropdown {
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='white' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  padding-right: 2.5rem;
+}
+
+.gewerk-dropdown option {
+  background: #1e3a5f;
+  color: #fff;
+}
+
+/* Gewerk-spezifische Farben */
+.gewerk-hlsk .app-header,
+.gewerk-hlsk .bottom-nav { background: linear-gradient(135deg, #059669 0%, #047857 100%); }
+.gewerk-hlsk .btn { background: #059669; }
+.gewerk-hlsk .nav-btn.active { color: #059669; }
+
+.gewerk-statik .app-header,
+.gewerk-statik .bottom-nav { background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%); }
+.gewerk-statik .btn { background: #7c3aed; }
+.gewerk-statik .nav-btn.active { color: #7c3aed; }
+
+.gewerk-brandschutz .app-header,
+.gewerk-brandschutz .bottom-nav { background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); }
+.gewerk-brandschutz .btn { background: #dc2626; }
+.gewerk-brandschutz .nav-btn.active { color: #dc2626; }
 
 /* Print */
 @media print {

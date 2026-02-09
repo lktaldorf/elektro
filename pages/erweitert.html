@@ -1,14 +1,15 @@
 <!-- Erweiterte Berechnungen Page -->
-<div class="tabs">
-  <button class="tab active" onclick="showTab('erdung')">Erdung</button>
-  <button class="tab" onclick="showTab('kurzschluss')">Kurzschluss</button>
-  <button class="tab" onclick="showTab('trafo')">Trafo</button>
-  <button class="tab" onclick="showTab('kabelgewicht')">Gewicht</button>
-  <button class="tab" onclick="showTab('trasse')">Trasse</button>
-</div>
+<div class="tab-container">
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab(this, 'erdung')">Erdung</button>
+    <button class="tab" onclick="switchTab(this, 'kurzschluss')">Kurzschluss</button>
+    <button class="tab" onclick="switchTab(this, 'trafo')">Trafo</button>
+    <button class="tab" onclick="switchTab(this, 'kabelgewicht')">Gewicht</button>
+    <button class="tab" onclick="switchTab(this, 'trasse')">Trasse</button>
+  </div>
 
 <!-- Erdung -->
-<div id="erdung" class="content active">
+<div id="erdung" class="tab-content active">
   <h2>⚡ Erdungswiderstand berechnen</h2>
   <p style="margin-bottom:20px;color:var(--gray-500)">Nach DIN VDE 0100-540</p>
   
@@ -59,7 +60,7 @@
 </div>
 
 <!-- Kurzschluss -->
-<div id="kurzschluss" class="content">
+<div id="kurzschluss" class="tab-content">
   <h2>⚡ Kurzschlussstrom berechnen</h2>
   <p style="margin-bottom:20px;color:var(--gray-500)">Für Selektivität und Schaltvermögen</p>
   
@@ -115,7 +116,7 @@
 </div>
 
 <!-- Trafo -->
-<div id="trafo" class="content">
+<div id="trafo" class="tab-content">
   <h2>🔄 Trafo dimensionieren</h2>
   
   <div class="form-group">
@@ -160,7 +161,7 @@
 </div>
 
 <!-- Kabelgewicht -->
-<div id="kabelgewicht" class="content">
+<div id="kabelgewicht" class="tab-content">
   <h2>⚖️ Kabelgewicht berechnen</h2>
   
   <div class="form-group">
@@ -205,17 +206,54 @@
 </div>
 
 <!-- Trasse -->
-<div id="trasse" class="content">
+<div id="trasse" class="tab-content">
   <h2>📐 Kabeltrasse dimensionieren</h2>
   
   <div class="form-group">
-    <label>Anzahl der Kabel</label>
-    <input type="number" id="trasse-anzahl" placeholder="z.B. 12">
+    <label>Eingabemethode</label>
+    <select id="trasse-methode" onchange="updateTrasseFields()">
+      <option value="manuell">Manuell (Anzahl × Durchmesser)</option>
+      <option value="auswahl">Kabel aus Liste wählen</option>
+    </select>
   </div>
   
-  <div class="form-group">
-    <label>Mittlerer Kabeldurchmesser (mm)</label>
-    <input type="number" id="trasse-durchmesser" placeholder="z.B. 15">
+  <div id="trasse-manuell-fields">
+    <div class="form-group">
+      <label>Anzahl der Kabel</label>
+      <input type="number" id="trasse-anzahl" placeholder="z.B. 12">
+    </div>
+    
+    <div class="form-group">
+      <label>Mittlerer Kabeldurchmesser (mm)</label>
+      <input type="number" id="trasse-durchmesser" placeholder="z.B. 15">
+    </div>
+  </div>
+  
+  <div id="trasse-auswahl-fields" style="display:none;">
+    <div id="kabel-liste">
+      <div class="kabel-eintrag" style="display:flex;gap:10px;margin-bottom:10px;">
+        <select class="kabel-typ" style="flex:2">
+          <option value="9.5">NYM-J 3×1,5 (Ø9,5)</option>
+          <option value="11">NYM-J 3×2,5 (Ø11)</option>
+          <option value="11">NYM-J 5×1,5 (Ø11)</option>
+          <option value="13">NYM-J 5×2,5 (Ø13)</option>
+          <option value="15">NYM-J 5×4 (Ø15)</option>
+          <option value="17">NYM-J 5×6 (Ø17)</option>
+          <option value="20">NYM-J 5×10 (Ø20)</option>
+          <option value="24">NYM-J 5×16 (Ø24)</option>
+          <option value="14">NYY-J 5×1,5 (Ø14)</option>
+          <option value="16">NYY-J 5×2,5 (Ø16)</option>
+          <option value="20">NYY-J 5×6 (Ø20)</option>
+          <option value="24">NYY-J 5×10 (Ø24)</option>
+          <option value="28">NYY-J 5×16 (Ø28)</option>
+          <option value="33">NYY-J 5×25 (Ø33)</option>
+          <option value="6">Cat.6 (Ø6)</option>
+          <option value="7">Cat.7 (Ø7)</option>
+        </select>
+        <input type="number" class="kabel-menge" placeholder="Anzahl" style="flex:1" value="1">
+      </div>
+    </div>
+    <button type="button" class="btn" style="margin-bottom:15px;background:#6b7280;" onclick="addKabelZeile()">+ Kabel hinzufügen</button>
   </div>
   
   <div class="form-group">
@@ -236,4 +274,5 @@
     <p>50, 75, 100, 150, 200, 300, 400, 500, 600</p>
     <p style="margin-top:8px"><strong>Tipp:</strong> Füllgrad max. 40-50% für Wärmeabfuhr und Nachbelegung!</p>
   </div>
+</div>
 </div>

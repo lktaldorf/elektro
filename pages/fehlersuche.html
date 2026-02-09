@@ -1,102 +1,234 @@
 <!-- Fehlersuche Page -->
-<h2>🔍 Fehlersuche-Assistent</h2>
-<p style="margin-bottom:15px;color:var(--gray-500)">Klicke auf das Problem für Lösungsvorschläge</p>
+<h2>🔍 Fehlersuche</h2>
+<p style="margin-bottom:20px;color:var(--gray-500)">Klicke auf ein Problem zum Aufklappen</p>
 
-<div class="troubleshoot-grid">
-  <div class="troubleshoot-card" onclick="toggleTroubleshoot(this)">
-    <h4>⚡ FI-Schutzschalter löst aus</h4>
-    <p style="color:var(--gray-500);font-size:13px">RCD löst immer wieder aus</p>
-    <div class="troubleshoot-solutions">
-      <ul>
-        <li><strong>Fehler im Verbraucher:</strong> Geräte einzeln testen</li>
-        <li><strong>Feuchtigkeit:</strong> Steckdosen im Bad, Keller prüfen</li>
-        <li><strong>Beschädigte Leitung:</strong> Isolationsmessung (min. 1 MΩ)</li>
-        <li><strong>Summenstrom:</strong> Viele alte Geräte → Ableitströme addieren</li>
-        <li><strong>FI defekt:</strong> Mit Prüftaste testen</li>
-        <li><strong>N-PE Verbindung:</strong> Unerlaubte Verbindung nach FI</li>
-      </ul>
-    </div>
+<div class="troubleshoot-card" onclick="toggleTroubleshoot(this)">
+  <div class="troubleshoot-header">
+    <span>⚡ FI/RCD löst aus</span>
+    <span class="toggle-icon">▼</span>
   </div>
-
-  <div class="troubleshoot-card" onclick="toggleTroubleshoot(this)">
-    <h4>🔌 Steckdose ohne Strom</h4>
-    <p style="color:var(--gray-500);font-size:13px">Keine Spannung</p>
-    <div class="troubleshoot-solutions">
-      <ul>
-        <li><strong>Sicherung:</strong> LSS oder FI ausgelöst?</li>
-        <li><strong>Lose Klemme:</strong> Kontakte in Dose prüfen</li>
-        <li><strong>Leitungsunterbrechung:</strong> Durchgangsprüfung</li>
-        <li><strong>Falscher Stromkreis:</strong> Alle Sicherungen prüfen</li>
-        <li><strong>Steckdose defekt:</strong> Spannung an Zuleitung messen</li>
-      </ul>
-    </div>
+  <div class="troubleshoot-solutions">
+    <ul>
+      <li><strong>Geräte einzeln testen</strong> - Alle Stecker ziehen, FI einschalten, nacheinander wieder einstecken bis FI auslöst</li>
+      <li><strong>Feuchtigkeit</strong> - Dosen im Bad, Keller, Außenbereich auf Nässe prüfen</li>
+      <li><strong>Isolationsmessung</strong> - Jeden Stromkreis einzeln messen (min. 1 MΩ)</li>
+      <li><strong>Ableitstrom</strong> - Viele alte Geräte (Waschmaschine, Spülmaschine) addieren Ableitströme</li>
+      <li><strong>N-PE Verbindung</strong> - Unerlaubte Brücke nach dem FI → Stromwandler umgangen</li>
+      <li><strong>Blitzeinschlag</strong> - Überspannung kann FI beschädigen</li>
+      <li><strong>FI defekt</strong> - Mit Prüftaste testen (muss sofort auslösen)</li>
+      <li><strong>Selektiver FI</strong> - Auslöseverzögerung beachten (Typ S)</li>
+    </ul>
+    <div class="tip-box">💡 <strong>Tipp:</strong> FI 30mA für Personenschutz, 300mA für Brandschutz</div>
   </div>
+</div>
 
-  <div class="troubleshoot-card" onclick="toggleTroubleshoot(this)">
-    <h4>💡 Licht funktioniert nicht</h4>
-    <p style="color:var(--gray-500);font-size:13px">Leuchte bleibt dunkel</p>
-    <div class="troubleshoot-solutions">
-      <ul>
-        <li><strong>Leuchtmittel:</strong> Defekt? → Austauschen</li>
-        <li><strong>Schalter:</strong> Kontakte prüfen</li>
-        <li><strong>Sicherung:</strong> Beleuchtungsstromkreis prüfen</li>
-        <li><strong>Klemmen:</strong> Lose Verbindungen</li>
-        <li><strong>Vorschaltgerät:</strong> Bei LED/Leuchtstoff EVG prüfen</li>
-      </ul>
-    </div>
+<div class="troubleshoot-card" onclick="toggleTroubleshoot(this)">
+  <div class="troubleshoot-header">
+    <span>🔌 Steckdose ohne Strom</span>
+    <span class="toggle-icon">▼</span>
   </div>
-
-  <div class="troubleshoot-card" onclick="toggleTroubleshoot(this)">
-    <h4>💫 Licht flackert</h4>
-    <p style="color:var(--gray-500);font-size:13px">Unruhiges Licht</p>
-    <div class="troubleshoot-solutions">
-      <ul>
-        <li><strong>Wackelkontakt:</strong> Lose Klemme in Verteilung/Dose</li>
-        <li><strong>Spannungsfall:</strong> Leitung zu dünn oder zu lang</li>
-        <li><strong>N unterbrochen:</strong> Nullleiter-Problem</li>
-        <li><strong>LED-Treiber:</strong> Minderwertiges EVG</li>
-        <li><strong>Dimmer:</strong> Nicht kompatibel mit LED?</li>
-      </ul>
-    </div>
+  <div class="troubleshoot-solutions">
+    <ul>
+      <li><strong>Sicherung/FI</strong> - Im Verteiler prüfen ob ausgelöst</li>
+      <li><strong>Spannungsprüfer</strong> - Direkt an Dose messen (L-N, L-PE)</li>
+      <li><strong>Klemmen prüfen</strong> - Dose öffnen, auf lose Klemmen kontrollieren</li>
+      <li><strong>Reihenschaltung</strong> - Vorherige Dose in der Kette prüfen</li>
+      <li><strong>Falscher Stromkreis</strong> - Alle Sicherungen systematisch aus/ein</li>
+      <li><strong>Durchgangsprüfung</strong> - Leitungswege auf Unterbrechung testen</li>
+      <li><strong>Kabelbruch</strong> - Besonders an Biegungen und Klemmen</li>
+    </ul>
+    <div class="tip-box">💡 <strong>Messreihenfolge:</strong> L-N → L-PE → N-PE</div>
   </div>
+</div>
 
-  <div class="troubleshoot-card" onclick="toggleTroubleshoot(this)">
-    <h4>🌡️ Kabel/Verteiler heiß</h4>
-    <p style="color:var(--gray-500);font-size:13px">Überhitzung</p>
-    <div class="troubleshoot-solutions">
-      <ul>
-        <li><strong>Überlast:</strong> Zu hoher Strom für Querschnitt</li>
-        <li><strong>Lose Klemme:</strong> Übergangswiderstand → Wärme</li>
-        <li><strong>Falscher Querschnitt:</strong> 1,5mm² auf 16A?</li>
-        <li><strong>Häufung:</strong> Zu viele Kabel gebündelt</li>
-        <li>⚠️ <strong>BRANDGEFAHR:</strong> Sofort Last reduzieren!</li>
-      </ul>
-    </div>
+<div class="troubleshoot-card" onclick="toggleTroubleshoot(this)">
+  <div class="troubleshoot-header">
+    <span>💡 Licht aus / flackert</span>
+    <span class="toggle-icon">▼</span>
   </div>
+  <div class="troubleshoot-solutions">
+    <ul>
+      <li><strong>Leuchtmittel defekt</strong> - Tauschen und testen</li>
+      <li><strong>Schalter</strong> - Kontakte verschlissen/verbrannt</li>
+      <li><strong>Wackelkontakt</strong> - Klemmen in Dose und Verteiler nachziehen</li>
+      <li><strong>EVG/Trafo defekt</strong> - Bei LED/Halogen Vorschaltgerät prüfen</li>
+      <li><strong>Dimmer inkompatibel</strong> - Viele LEDs nicht dimmbar oder brauchen speziellen Dimmer</li>
+      <li><strong>Neutralleiter unterbrochen</strong> - Flackern bei Lastschaltung im gleichen Stromkreis</li>
+      <li><strong>Spannungsschwankungen</strong> - EVU informieren bei häufigem Flackern</li>
+      <li><strong>Fassung defekt</strong> - Kontaktzungen verbogen oder oxidiert</li>
+    </ul>
+    <div class="tip-box">💡 <strong>LED-Mindestlast:</strong> Manche Dimmer brauchen min. 10-25W</div>
+  </div>
+</div>
 
-  <div class="troubleshoot-card" onclick="toggleTroubleshoot(this)">
-    <h4>📉 Niedriger Isolationswiderstand</h4>
-    <p style="color:var(--gray-500);font-size:13px">Messwert unter 1 MΩ</p>
-    <div class="troubleshoot-solutions">
-      <ul>
-        <li><strong>Feuchtigkeit:</strong> In Dosen, Kabelkanälen</li>
-        <li><strong>Beschädigte Isolierung:</strong> Nagel/Schraube durch Kabel</li>
-        <li><strong>Alter:</strong> Isolierung versprödet</li>
-        <li><strong>Verschmutzung:</strong> Leitende Ablagerungen</li>
-        <li><strong>Abschnittsweise messen:</strong> Fehler eingrenzen</li>
-      </ul>
-    </div>
+<div class="troubleshoot-card" onclick="toggleTroubleshoot(this)">
+  <div class="troubleshoot-header">
+    <span>🔥 Kabel/Klemme heiß</span>
+    <span class="toggle-icon">▼</span>
+  </div>
+  <div class="troubleshoot-solutions">
+    <ul>
+      <li>⚠️ <strong>SOFORT LAST ABSCHALTEN! BRANDGEFAHR!</strong></li>
+      <li><strong>Lose Klemme</strong> - Übergangswiderstand erzeugt Wärme</li>
+      <li><strong>Überlast</strong> - Zu viel Leistung für Leitungsquerschnitt</li>
+      <li><strong>Kabel gebündelt</strong> - Wärmeabfuhr behindert, Reduktionsfaktor beachten</li>
+      <li><strong>Falscher Querschnitt</strong> - z.B. 1,5mm² mit 16A abgesichert</li>
+      <li><strong>Oxidierte Kontakte</strong> - Korrosion erhöht Widerstand</li>
+      <li><strong>Aluminium auf Kupfer</strong> - Elektrochemische Korrosion ohne Bimetallklemmen</li>
+    </ul>
+    <div class="danger-box">🚨 Thermografie zur Lokalisierung verwenden!</div>
+  </div>
+</div>
+
+<div class="troubleshoot-card" onclick="toggleTroubleshoot(this)">
+  <div class="troubleshoot-header">
+    <span>📉 Isolationswiderstand zu niedrig</span>
+    <span class="toggle-icon">▼</span>
+  </div>
+  <div class="troubleshoot-solutions">
+    <ul>
+      <li><strong>Feuchtigkeit</strong> - Dosen, Kabelkanäle, Rohre kontrollieren</li>
+      <li><strong>Beschädigung</strong> - Nagel/Schraube durch Kabel (Installationszonen!)</li>
+      <li><strong>Alterung</strong> - Isolierung versprödet, besonders bei Wärme/UV</li>
+      <li><strong>Überspannung</strong> - Blitzeinschlag kann Isolierung beschädigen</li>
+      <li><strong>Abschnittsweise messen</strong> - Stromkreis halbieren zur Fehlereingrenzung</li>
+      <li><strong>Verbraucher abklemmen</strong> - Geräte können Messwert verfälschen</li>
+    </ul>
+    <div class="tip-box">📏 <strong>Grenzwert:</strong> Min. 1 MΩ bei 500V DC Prüfspannung</div>
+  </div>
+</div>
+
+<div class="troubleshoot-card" onclick="toggleTroubleshoot(this)">
+  <div class="troubleshoot-header">
+    <span>⚡ Schleifenimpedanz zu hoch</span>
+    <span class="toggle-icon">▼</span>
+  </div>
+  <div class="troubleshoot-solutions">
+    <ul>
+      <li><strong>Leitungslänge</strong> - Zu lange Strecke zum Verteiler</li>
+      <li><strong>Querschnitt zu klein</strong> - Für die Länge ungeeignet</li>
+      <li><strong>Schlechte Klemmverbindungen</strong> - Übergangswiderstand addiert sich</li>
+      <li><strong>Erdung</strong> - Erder-Anschluss und -Widerstand prüfen</li>
+      <li><strong>Hauptpotentialausgleich</strong> - Verbindungen kontrollieren</li>
+      <li><strong>TN-C/TN-S Übergang</strong> - PEN-Aufteilung korrekt?</li>
+    </ul>
+    <div class="tip-box">📏 <strong>Formel:</strong> Zs × Ia ≤ U0 (für Abschaltzeit)</div>
+  </div>
+</div>
+
+<div class="troubleshoot-card" onclick="toggleTroubleshoot(this)">
+  <div class="troubleshoot-header">
+    <span>🔧 LSS löst ständig aus</span>
+    <span class="toggle-icon">▼</span>
+  </div>
+  <div class="troubleshoot-solutions">
+    <ul>
+      <li><strong>Überlast</strong> - Zu viele Verbraucher am Stromkreis</li>
+      <li><strong>Kurzschluss</strong> - Kabel beschädigt, Isolationsfehler</li>
+      <li><strong>Einschaltströme</strong> - Motoren, Trafos, alte Glühlampen</li>
+      <li><strong>Falsche Charakteristik</strong> - B statt C bei Motoren</li>
+      <li><strong>LSS defekt</strong> - Thermisches Element ausgelaugt</li>
+      <li><strong>Selektivität</strong> - Falsches Verhältnis Vor-/Nachsicherung</li>
+    </ul>
+    <div class="tip-box">💡 <strong>Lösung:</strong> Bei Motoren C-Charakteristik, bei hohen Einschaltströmen D</div>
+  </div>
+</div>
+
+<div class="troubleshoot-card" onclick="toggleTroubleshoot(this)">
+  <div class="troubleshoot-header">
+    <span>🔊 Brummen im Verteiler</span>
+    <span class="toggle-icon">▼</span>
+  </div>
+  <div class="troubleshoot-solutions">
+    <ul>
+      <li><strong>Lose Schrauben</strong> - Alle Befestigungen nachziehen</li>
+      <li><strong>Schütz/Relais</strong> - Magnetspule brummt bei Verschleiß</li>
+      <li><strong>Trafo</strong> - Magnetostriktion bei Überlast oder Alter</li>
+      <li><strong>FI-Schutzschalter</strong> - Ableitstrom nahe Auslöseschwelle</li>
+      <li><strong>Oberschwingungen</strong> - Elektronische Lasten verursachen Verzerrungen</li>
+    </ul>
+  </div>
+</div>
+
+<div class="troubleshoot-card" onclick="toggleTroubleshoot(this)">
+  <div class="troubleshoot-header">
+    <span>⚡ Elektrischer Schlag trotz FI</span>
+    <span class="toggle-icon">▼</span>
+  </div>
+  <div class="troubleshoot-solutions">
+    <ul>
+      <li><strong>FI defekt</strong> - Prüftaste betätigen</li>
+      <li><strong>Falscher FI-Typ</strong> - Typ A für pulsierende, Typ B für DC-Fehlerströme</li>
+      <li><strong>Auslösestrom</strong> - 30mA kann noch spürbar sein</li>
+      <li><strong>Stromkreis nicht über FI</strong> - Installation prüfen</li>
+      <li><strong>Fremdspannung</strong> - Einspeisung von anderem Stromkreis</li>
+      <li><strong>Statische Aufladung</strong> - Kein echter Fehlerstrom</li>
+    </ul>
+    <div class="danger-box">🚨 FI schützt NICHT bei L-N Berührung!</div>
+  </div>
+</div>
+
+<div class="troubleshoot-card" onclick="toggleTroubleshoot(this)">
+  <div class="troubleshoot-header">
+    <span>📶 Netzwerkdose funktioniert nicht</span>
+    <span class="toggle-icon">▼</span>
+  </div>
+  <div class="troubleshoot-solutions">
+    <ul>
+      <li><strong>Auflegung prüfen</strong> - T568A oder T568B konsistent?</li>
+      <li><strong>Kabeltester</strong> - Durchgang und Verdrahtung prüfen</li>
+      <li><strong>Quetschung</strong> - Kabel zu stark gebogen oder eingeklemmt</li>
+      <li><strong>Länge</strong> - Max. 90m Installationskabel + 10m Patchkabel</li>
+      <li><strong>Schirmung</strong> - Bei Cat.6a/7 Schirm korrekt aufgelegt?</li>
+      <li><strong>Patchpanel</strong> - Verbindung zum Switch prüfen</li>
+    </ul>
   </div>
 </div>
 
 <div class="danger" style="margin-top:25px">
-  <h4>⚠️ SICHERHEITSHINWEIS</h4>
-  <p>Arbeiten an elektrischen Anlagen nur durch Elektrofachkräfte! Die 5 Sicherheitsregeln beachten:</p>
-  <ol style="margin-left:20px;margin-top:10px">
-    <li>Freischalten</li>
-    <li>Gegen Wiedereinschalten sichern</li>
-    <li>Spannungsfreiheit feststellen</li>
-    <li>Erden und Kurzschließen</li>
-    <li>Benachbarte Teile abdecken</li>
+  <h4>⚠️ 5 SICHERHEITSREGELN</h4>
+  <ol style="margin:10px 0 0 20px">
+    <li><strong>Freischalten</strong> - Allpolig vom Netz trennen</li>
+    <li><strong>Gegen Wiedereinschalten sichern</strong> - Schloss, Schild</li>
+    <li><strong>Spannungsfreiheit feststellen</strong> - Mit 2-poligem Prüfer</li>
+    <li><strong>Erden und Kurzschließen</strong> - Ab 1kV Pflicht</li>
+    <li><strong>Benachbarte Teile abdecken</strong> - Isoliermatten, Tücher</li>
   </ol>
 </div>
+
+<style>
+.troubleshoot-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+.troubleshoot-header span:first-child {
+  font-weight: bold;
+  font-size: 1.05rem;
+}
+.toggle-icon {
+  font-size: 0.8rem;
+  transition: transform 0.3s;
+}
+.troubleshoot-card.active .toggle-icon {
+  transform: rotate(180deg);
+}
+.tip-box {
+  background: #ecfdf5;
+  border-left: 3px solid #10b981;
+  padding: 8px 12px;
+  margin-top: 12px;
+  font-size: 0.9rem;
+  border-radius: 0 4px 4px 0;
+}
+.danger-box {
+  background: #fef2f2;
+  border-left: 3px solid #dc2626;
+  padding: 8px 12px;
+  margin-top: 12px;
+  font-size: 0.9rem;
+  border-radius: 0 4px 4px 0;
+  color: #991b1b;
+}
+</style>

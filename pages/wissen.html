@@ -2,9 +2,13 @@
 <div class="tab-container">
   <div class="tabs">
     <button class="tab active" onclick="switchTab(this, 'tab-badzonen')">Badzonen</button>
-    <button class="tab" onclick="switchTab(this, 'tab-installhoehen')">Installationshöhen</button>
-    <button class="tab" onclick="switchTab(this, 'tab-belastbarkeit')">Strombelastbarkeit</button>
-    <button class="tab" onclick="switchTab(this, 'tab-schutzarten')">Schutzarten</button>
+    <button class="tab" onclick="switchTab(this, 'tab-installhoehen')">Höhen</button>
+    <button class="tab" onclick="switchTab(this, 'tab-belastbarkeit')">Belastbarkeit</button>
+    <button class="tab" onclick="switchTab(this, 'tab-farben')">Adernfarben</button>
+    <button class="tab" onclick="switchTab(this, 'tab-schutzarten')">IP-Schutz</button>
+    <button class="tab" onclick="switchTab(this, 'tab-formeln')">Formeln</button>
+    <button class="tab" onclick="switchTab(this, 'tab-abstaende')">Abstände</button>
+    <button class="tab" onclick="switchTab(this, 'tab-messungen')">Messungen</button>
   </div>
 
   <!-- BADZONEN mit Maßzeichnung -->
@@ -15,68 +19,61 @@
     <!-- DRAUFSICHT Bad -->
     <h3>Draufsicht Badezimmer</h3>
     <div class="bad-zeichnung-container">
-      <svg viewBox="0 0 500 400" class="bad-svg">
+      <svg viewBox="0 0 500 420" class="bad-svg">
         <!-- Hintergrund -->
-        <rect x="0" y="0" width="500" height="400" fill="#f8fafc"/>
+        <rect x="0" y="0" width="500" height="420" fill="#f8fafc"/>
         
-        <!-- Zone 2 (außen) -->
-        <rect x="20" y="20" width="460" height="360" fill="#bbf7d0" stroke="#22c55e" stroke-width="2"/>
+        <!-- Zone 3 (außen) -->
+        <rect x="10" y="10" width="480" height="370" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
         
-        <!-- Zone 1 (mittel) - um Badewanne -->
-        <rect x="30" y="150" width="200" height="140" fill="#fef08a" stroke="#eab308" stroke-width="2" rx="5"/>
+        <!-- Zone 2 (mittel) -->
+        <rect x="25" y="25" width="450" height="340" fill="#bbf7d0" stroke="#22c55e" stroke-width="2"/>
+        
+        <!-- Zone 1 (um Badewanne) -->
+        <rect x="30" y="140" width="210" height="160" fill="#fef08a" stroke="#eab308" stroke-width="2" rx="5"/>
         
         <!-- Zone 0 Badewanne -->
-        <rect x="50" y="170" width="160" height="100" fill="#fecaca" stroke="#ef4444" stroke-width="2" rx="10"/>
-        <text x="130" y="225" text-anchor="middle" font-size="14" font-weight="bold" fill="#991b1b">Zone 0</text>
-        <text x="130" y="242" text-anchor="middle" font-size="10" fill="#991b1b">Badewanne</text>
+        <rect x="50" y="160" width="170" height="120" fill="#fecaca" stroke="#ef4444" stroke-width="2" rx="10"/>
+        <text x="135" y="225" text-anchor="middle" font-size="14" font-weight="bold" fill="#991b1b">Zone 0</text>
+        <text x="135" y="242" text-anchor="middle" font-size="10" fill="#991b1b">Badewanne</text>
         
         <!-- Zone 1 Beschriftung -->
-        <text x="115" y="160" text-anchor="middle" font-size="11" fill="#854d0e">Zone 1</text>
+        <text x="130" y="150" text-anchor="middle" font-size="11" fill="#854d0e">Zone 1 (60cm)</text>
         
-        <!-- Dusche mit Zone 0 und Zone 1 -->
-        <rect x="280" y="30" width="120" height="120" fill="#fef08a" stroke="#eab308" stroke-width="2" rx="5"/>
-        <rect x="295" y="45" width="90" height="90" fill="#fecaca" stroke="#ef4444" stroke-width="2" rx="5"/>
-        <text x="340" y="95" text-anchor="middle" font-size="14" font-weight="bold" fill="#991b1b">Zone 0</text>
-        <text x="340" y="110" text-anchor="middle" font-size="10" fill="#991b1b">Dusche</text>
-        <text x="340" y="165" text-anchor="middle" font-size="11" fill="#854d0e">Zone 1</text>
+        <!-- Dusche mit Zonen -->
+        <rect x="290" y="30" width="130" height="130" fill="#fef08a" stroke="#eab308" stroke-width="2" rx="5"/>
+        <rect x="310" y="50" width="90" height="90" fill="#fecaca" stroke="#ef4444" stroke-width="2" rx="5"/>
+        <text x="355" y="100" text-anchor="middle" font-size="14" font-weight="bold" fill="#991b1b">Zone 0</text>
+        <text x="355" y="115" text-anchor="middle" font-size="10" fill="#991b1b">Dusche</text>
+        <text x="355" y="175" text-anchor="middle" font-size="11" fill="#854d0e">Zone 1</text>
         
-        <!-- Brausekopf Symbol -->
-        <circle cx="340" cy="55" r="8" fill="#64748b"/>
+        <!-- Brausekopf -->
+        <circle cx="355" cy="60" r="8" fill="#64748b"/>
         
-        <!-- Waschbecken (außerhalb Zone 1) -->
-        <ellipse cx="420" cy="250" rx="45" ry="30" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
-        <text x="420" y="255" text-anchor="middle" font-size="11" fill="#0369a1">Waschbecken</text>
+        <!-- Waschbecken (Zone 3) -->
+        <ellipse cx="420" cy="260" rx="45" ry="30" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+        <text x="420" y="265" text-anchor="middle" font-size="11" fill="#0369a1">Waschbecken</text>
         
-        <!-- 60cm Maßlinien um Badewanne -->
-        <line x1="30" y1="300" x2="30" y2="320" stroke="#666" stroke-width="1"/>
-        <line x1="230" y1="300" x2="230" y2="320" stroke="#666" stroke-width="1"/>
-        <line x1="30" y1="315" x2="230" y2="315" stroke="#666" stroke-width="1"/>
-        <text x="130" y="335" text-anchor="middle" font-size="10" fill="#666">200 cm (Wannenlänge)</text>
+        <!-- Steckdose in Zone 3 -->
+        <rect x="435" y="320" width="20" height="15" fill="#fff" stroke="#333" stroke-width="1.5" rx="2"/>
+        <text x="445" y="350" text-anchor="middle" font-size="8" fill="#333">Steckdose</text>
         
-        <!-- 60cm zur Seite -->
-        <line x1="235" y1="170" x2="255" y2="170" stroke="#666" stroke-width="1"/>
-        <line x1="235" y1="270" x2="255" y2="270" stroke="#666" stroke-width="1"/>
-        <line x1="250" y1="170" x2="250" y2="270" stroke="#666" stroke-width="1"/>
-        <polygon points="248,175 252,175 250,170" fill="#666"/>
-        <polygon points="248,265 252,265 250,270" fill="#666"/>
-        <text x="260" y="225" font-size="9" fill="#666" transform="rotate(90, 260, 225)">100 cm</text>
-        
-        <!-- Zone 2 Markierung -->
-        <text x="55" y="80" font-size="12" fill="#166534">Zone 2</text>
-        
-        <!-- 60cm Abstand Zone 1 zu Zone 2 -->
-        <line x1="30" y1="145" x2="30" y2="85" stroke="#22c55e" stroke-width="1" stroke-dasharray="4"/>
-        <text x="35" y="115" font-size="9" fill="#166534">60 cm</text>
+        <!-- Zone Beschriftungen - außen -->
+        <text x="250" y="8" font-size="10" fill="#2563eb" font-weight="bold" text-anchor="middle">← Zone 3 (>120cm) →</text>
+        <text x="30" y="42" font-size="11" fill="#166534" font-weight="bold">Zone 2</text>
         
         <!-- Legende -->
-        <rect x="20" y="350" width="15" height="15" fill="#fecaca" stroke="#ef4444"/>
-        <text x="40" y="362" font-size="10">Zone 0 - Innerhalb Wanne/Dusche</text>
+        <rect x="10" y="385" width="15" height="15" fill="#fecaca" stroke="#ef4444"/>
+        <text x="30" y="397" font-size="9">Zone 0</text>
         
-        <rect x="170" y="350" width="15" height="15" fill="#fef08a" stroke="#eab308"/>
-        <text x="190" y="362" font-size="10">Zone 1 - 0-60 cm horizontal</text>
+        <rect x="80" y="385" width="15" height="15" fill="#fef08a" stroke="#eab308"/>
+        <text x="100" y="397" font-size="9">Zone 1 (0-60cm)</text>
         
-        <rect x="330" y="350" width="15" height="15" fill="#bbf7d0" stroke="#22c55e"/>
-        <text x="350" y="362" font-size="10">Zone 2 - 60-120 cm</text>
+        <rect x="190" y="385" width="15" height="15" fill="#bbf7d0" stroke="#22c55e"/>
+        <text x="210" y="397" font-size="9">Zone 2 (60-120cm)</text>
+        
+        <rect x="320" y="385" width="15" height="15" fill="#dbeafe" stroke="#3b82f6"/>
+        <text x="340" y="397" font-size="9">Zone 3 (&gt;120cm)</text>
       </svg>
     </div>
     
@@ -110,9 +107,9 @@
         <rect x="270" y="25" width="60" height="225" fill="#bbf7d0" fill-opacity="0.4" stroke="#22c55e" stroke-width="2" stroke-dasharray="5"/>
         <text x="300" y="140" text-anchor="middle" font-size="12" font-weight="bold" fill="#16a34a" transform="rotate(-90, 300, 140)">Zone 2</text>
         
-        <!-- Außerhalb Zonen -->
-        <rect x="330" y="25" width="130" height="225" fill="#e0f2fe" fill-opacity="0.3"/>
-        <text x="395" y="140" text-anchor="middle" font-size="11" fill="#0284c7" transform="rotate(-90, 395, 140)">Außerhalb</text>
+        <!-- Zone 3 (außerhalb) -->
+        <rect x="330" y="25" width="130" height="225" fill="#dbeafe" fill-opacity="0.4" stroke="#3b82f6" stroke-width="2" stroke-dasharray="5"/>
+        <text x="395" y="140" text-anchor="middle" font-size="12" font-weight="bold" fill="#2563eb" transform="rotate(-90, 395, 140)">Zone 3</text>
         
         <!-- Höhenlinien -->
         <line x1="40" y1="250" x2="40" y2="25" stroke="#333" stroke-width="1"/>
@@ -135,8 +132,6 @@
         <!-- Duschkopf mit 120cm Radius -->
         <circle cx="130" cy="60" r="8" fill="#64748b"/>
         <text x="130" y="50" text-anchor="middle" font-size="9" fill="#64748b">Brause</text>
-        <path d="M 130 68 Q 200 100 210 140" stroke="#64748b" stroke-width="1" stroke-dasharray="3" fill="none"/>
-        <text x="180" y="90" font-size="8" fill="#64748b">120cm Radius</text>
       </svg>
     </div>
     
@@ -147,7 +142,6 @@
           <th>Zone</th>
           <th>Bereich</th>
           <th>Min. Schutzart</th>
-          <th>Max. Spannung</th>
           <th>Erlaubte Geräte</th>
         </tr>
       </thead>
@@ -156,22 +150,25 @@
           <td><span class="zone-badge zone-0">0</span></td>
           <td>Innerhalb Wanne/Dusche</td>
           <td><strong>IPX7</strong></td>
-          <td>12V AC / 30V DC (SELV)</td>
-          <td>Nur fest angeschlossene SELV-Geräte</td>
+          <td>Nur SELV ≤12V AC</td>
         </tr>
         <tr>
           <td><span class="zone-badge zone-1">1</span></td>
-          <td>0-60 cm von Zone 0, bis 225 cm Höhe</td>
-          <td><strong>IPX4</strong> (IPX5 bei Strahl)</td>
-          <td>230V nur mit RCD 30mA</td>
+          <td>0-60 cm, bis 225 cm Höhe</td>
+          <td><strong>IPX4</strong></td>
           <td>Warmwasserbereiter, SELV-Leuchten</td>
         </tr>
         <tr>
           <td><span class="zone-badge zone-2">2</span></td>
-          <td>60-120 cm von Zone 1, bis 225 cm Höhe</td>
-          <td><strong>IPX4</strong> (IPX5 bei Strahl)</td>
-          <td>230V mit RCD 30mA</td>
-          <td>Leuchten, Heizlüfter (Klasse II), Rasiersteckdosen</td>
+          <td>60-120 cm, bis 225 cm Höhe</td>
+          <td><strong>IPX4</strong></td>
+          <td>Leuchten, Heizlüfter Kl.II, Rasiersteckd.</td>
+        </tr>
+        <tr>
+          <td><span class="zone-badge zone-3">3</span></td>
+          <td>Außerhalb Zone 2, >120 cm</td>
+          <td><strong>IPX1</strong></td>
+          <td>Steckdosen mit RCD 30mA, alle Geräte</td>
         </tr>
       </tbody>
     </table>
@@ -192,96 +189,26 @@
   <div id="tab-installhoehen" class="tab-content">
     <h2>Installationshöhen nach DIN 18015-3</h2>
     
-    <div class="install-drawing">
-      <svg viewBox="0 0 400 500" class="install-svg">
-        <!-- Wand -->
-        <rect x="50" y="20" width="300" height="460" fill="#f1f5f9" stroke="#64748b" stroke-width="2"/>
-        
-        <!-- Boden -->
-        <rect x="20" y="480" width="360" height="20" fill="#94a3b8"/>
-        <text x="200" y="495" text-anchor="middle" font-size="10" fill="#fff">OKFF</text>
-        
-        <!-- Steckdose 30cm -->
-        <rect x="100" y="435" width="30" height="20" fill="#fff" stroke="#333" stroke-width="2" rx="3"/>
-        <circle cx="108" cy="445" r="2" fill="#333"/>
-        <circle cx="122" cy="445" r="2" fill="#333"/>
-        <line x1="135" y1="445" x2="180" y2="445" stroke="#666" stroke-dasharray="3"/>
-        <text x="185" y="448" font-size="10" fill="#333">30 cm - Steckdose</text>
-        
-        <!-- Maßlinie 30cm -->
-        <line x1="70" y1="445" x2="70" y2="480" stroke="#333" stroke-width="1"/>
-        <line x1="65" y1="445" x2="75" y2="445" stroke="#333" stroke-width="1"/>
-        <line x1="65" y1="480" x2="75" y2="480" stroke="#333" stroke-width="1"/>
-        <text x="60" y="465" text-anchor="end" font-size="9" fill="#333">30</text>
-        
-        <!-- Schalter 105cm -->
-        <rect x="100" y="355" width="25" height="35" fill="#fff" stroke="#333" stroke-width="2" rx="3"/>
-        <circle cx="112" cy="372" r="5" fill="none" stroke="#333" stroke-width="1.5"/>
-        <line x1="130" y1="372" x2="180" y2="372" stroke="#666" stroke-dasharray="3"/>
-        <text x="185" y="375" font-size="10" fill="#333">105 cm - Schalter</text>
-        
-        <!-- Maßlinie 105cm -->
-        <line x1="70" y1="372" x2="70" y2="480" stroke="#333" stroke-width="1"/>
-        <line x1="65" y1="372" x2="75" y2="372" stroke="#333" stroke-width="1"/>
-        <text x="60" y="430" text-anchor="end" font-size="9" fill="#333">105</text>
-        
-        <!-- Arbeitsfläche Steckdose 115cm -->
-        <rect x="260" y="345" width="30" height="20" fill="#fff" stroke="#333" stroke-width="2" rx="3"/>
-        <circle cx="268" cy="355" r="2" fill="#333"/>
-        <circle cx="282" cy="355" r="2" fill="#333"/>
-        <line x1="295" y1="355" x2="340" y2="355" stroke="#666" stroke-dasharray="3"/>
-        <text x="345" y="358" font-size="9" fill="#333">115 cm</text>
-        <text x="345" y="370" font-size="8" fill="#666">(Küche)</text>
-        
-        <!-- Fensterbrüstung 85cm -->
-        <rect x="180" y="370" width="60" height="5" fill="#94a3b8"/>
-        <rect x="175" y="285" width="70" height="90" fill="none" stroke="#0ea5e9" stroke-width="2"/>
-        <line x1="175" y1="375" x2="160" y2="375" stroke="#666" stroke-dasharray="3"/>
-        <text x="155" y="378" text-anchor="end" font-size="9" fill="#333">85 cm - Brüstung</text>
-        
-        <!-- Türrahmen -->
-        <rect x="300" y="280" width="50" height="200" fill="#d4a574" stroke="#92400e" stroke-width="2"/>
-        <text x="325" y="380" text-anchor="middle" font-size="9" fill="#fff" transform="rotate(-90, 325, 380)">Tür 200cm</text>
-        
-        <!-- Türschalter seitlich -->
-        <rect x="270" y="355" width="20" height="30" fill="#fff" stroke="#333" stroke-width="2" rx="3"/>
-        <text x="280" y="395" text-anchor="middle" font-size="8" fill="#666">15cm</text>
-        
-        <!-- Deckenleuchte -->
-        <line x1="200" y1="25" x2="200" y2="60" stroke="#333" stroke-width="2"/>
-        <circle cx="200" cy="75" r="20" fill="#fef08a" stroke="#eab308" stroke-width="2"/>
-        <line x1="190" y1="65" x2="210" y2="85" stroke="#333" stroke-width="1"/>
-        <line x1="210" y1="65" x2="190" y2="85" stroke="#333" stroke-width="1"/>
-        
-        <!-- 230cm Höhe -->
-        <line x1="355" y1="250" x2="380" y2="250" stroke="#666" stroke-dasharray="3"/>
-        <text x="360" y="245" font-size="9" fill="#333">230 cm</text>
-        <text x="360" y="258" font-size="8" fill="#666">Deckenauslass</text>
-      </svg>
-    </div>
-    
-    <h3>Standardhöhen</h3>
+    <h3>Standardhöhen (alle Maße in cm ab OKFF)</h3>
     <table class="data-table">
       <thead>
-        <tr><th>Betriebsmittel</th><th>Standardhöhe</th><th>Barrierefrei</th><th>Hinweis</th></tr>
+        <tr><th>Betriebsmittel</th><th>Standard</th><th>Barrierefrei</th></tr>
       </thead>
       <tbody>
-        <tr><td>Steckdosen (normal)</td><td>30 cm</td><td>40-80 cm</td><td>Mitte Dose bis OKFF</td></tr>
-        <tr><td>Schalter</td><td>105 cm</td><td>85 cm</td><td>Mitte Schalter bis OKFF</td></tr>
-        <tr><td>Steckdosen Arbeitsfläche</td><td>115 cm</td><td>85-105 cm</td><td>15 cm über Arbeitsplatte</td></tr>
-        <tr><td>Waschmaschinenanschluss</td><td>105 cm</td><td>105 cm</td><td>-</td></tr>
-        <tr><td>Herdanschluss</td><td>30 cm</td><td>30 cm</td><td>Seitlich am Herd</td></tr>
-        <tr><td>Türschalter</td><td>105 cm</td><td>85 cm</td><td>15 cm vom Türstock</td></tr>
+        <tr><td>Steckdosen normal</td><td><strong>30</strong></td><td>40-80</td></tr>
+        <tr><td>Schalter</td><td><strong>105</strong></td><td>85</td></tr>
+        <tr><td>Steckdosen Küche</td><td><strong>115</strong></td><td>85-105</td></tr>
+        <tr><td>Waschmaschine</td><td><strong>105</strong></td><td>105</td></tr>
+        <tr><td>Herdanschluss</td><td><strong>30</strong></td><td>30</td></tr>
+        <tr><td>Türschalter Abstand</td><td><strong>15</strong></td><td>50</td></tr>
+        <tr><td>Fensterbrüstung</td><td><strong>85</strong></td><td>60</td></tr>
+        <tr><td>Deckenauslass</td><td><strong>230</strong></td><td>230</td></tr>
       </tbody>
     </table>
     
     <div class="info-box">
       <h4>📐 Toleranzen</h4>
-      <ul>
-        <li>Höhenmaße: ± 3 cm Toleranz</li>
-        <li>Seitliche Abstände: ± 1,5 cm Toleranz</li>
-        <li>Bei barrierefreiem Bauen: DIN 18040 beachten</li>
-      </ul>
+      <p>Höhenmaße: ± 3 cm | Seitliche Abstände: ± 1,5 cm</p>
     </div>
   </div>
 
@@ -353,6 +280,85 @@
     </table>
   </div>
 
+  <!-- ADERNFARBEN -->
+  <div id="tab-farben" class="tab-content">
+    <h2>Adernfarben nach DIN VDE</h2>
+    
+    <h3>Starkstrom (NYM, NYY)</h3>
+    <table class="data-table">
+      <tbody>
+        <tr><td style="background:linear-gradient(90deg, #22c55e 50%, #eab308 50%);color:white;font-weight:bold;width:80px;">Grün-Gelb</td><td><strong>PE</strong> - Schutzleiter</td></tr>
+        <tr><td style="background:#3b82f6;color:white;font-weight:bold;">Blau</td><td><strong>N</strong> - Neutralleiter</td></tr>
+        <tr><td style="background:#92400e;color:white;font-weight:bold;">Braun</td><td><strong>L1</strong> - Außenleiter 1</td></tr>
+        <tr><td style="background:#1f2937;color:white;font-weight:bold;">Schwarz</td><td><strong>L2</strong> - Außenleiter 2</td></tr>
+        <tr><td style="background:#6b7280;color:white;font-weight:bold;">Grau</td><td><strong>L3</strong> - Außenleiter 3</td></tr>
+      </tbody>
+    </table>
+    
+    <h3 style="margin-top:20px;">Steuerleitungen (YSLY, ÖLFLEX)</h3>
+    <table class="data-table">
+      <tbody>
+        <tr><td style="background:linear-gradient(90deg, #22c55e 50%, #eab308 50%);color:white;font-weight:bold;width:80px;">Grün-Gelb</td><td><strong>PE</strong> - Schutzleiter (wenn vorhanden)</td></tr>
+        <tr><td style="background:#3b82f6;color:white;font-weight:bold;">Blau</td><td>Ader 1 / Masse / 0V</td></tr>
+        <tr><td style="background:#92400e;color:white;font-weight:bold;">Braun</td><td>Ader 2 / +24V / Signal</td></tr>
+        <tr><td style="background:#1f2937;color:white;font-weight:bold;">Schwarz</td><td>Ader 3</td></tr>
+        <tr><td style="background:#6b7280;color:white;font-weight:bold;">Grau</td><td>Ader 4</td></tr>
+        <tr><td style="background:#f472b6;color:white;font-weight:bold;">Rosa</td><td>Ader 5</td></tr>
+        <tr><td style="background:#dc2626;color:white;font-weight:bold;">Rot</td><td>Ader 6</td></tr>
+        <tr><td style="background:#fbbf24;color:#333;font-weight:bold;">Gelb</td><td>Ader 7</td></tr>
+        <tr><td style="background:#f97316;color:white;font-weight:bold;">Orange</td><td>Ader 8</td></tr>
+        <tr><td style="background:#fff;color:#333;font-weight:bold;border:1px solid #333;">Weiß</td><td>Ader 9</td></tr>
+      </tbody>
+    </table>
+    <p style="color:#6b7280;font-size:12px;margin-top:8px;">Bei mehr Adern: Farbkombinationen mit weißen Ringen</p>
+    
+    <h3 style="margin-top:20px;">Netzwerkkabel (Cat.5/6/7)</h3>
+    <table class="data-table">
+      <thead>
+        <tr><th>Paar</th><th>Ader +</th><th>Ader -</th><th>Funktion (T568B)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td style="background:#f97316;color:white;">Orange</td><td style="background:#fff;border:1px solid #f97316;">Weiß-Orange</td><td>TX+ / TX-</td></tr>
+        <tr><td>2</td><td style="background:#22c55e;color:white;">Grün</td><td style="background:#fff;border:1px solid #22c55e;">Weiß-Grün</td><td>RX+ / RX-</td></tr>
+        <tr><td>3</td><td style="background:#3b82f6;color:white;">Blau</td><td style="background:#fff;border:1px solid #3b82f6;">Weiß-Blau</td><td>PoE / Reserve</td></tr>
+        <tr><td>4</td><td style="background:#92400e;color:white;">Braun</td><td style="background:#fff;border:1px solid #92400e;">Weiß-Braun</td><td>PoE / Reserve</td></tr>
+      </tbody>
+    </table>
+    
+    <h3 style="margin-top:20px;">Telefonleitung (J-Y(St)Y)</h3>
+    <table class="data-table">
+      <thead>
+        <tr><th>Paar</th><th>Ader a</th><th>Ader b</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td style="background:#dc2626;color:white;">Rot</td><td style="background:#1f2937;color:white;">Schwarz</td></tr>
+        <tr><td>2</td><td style="background:#fff;border:1px solid #333;">Weiß</td><td style="background:#fbbf24;color:#333;">Gelb</td></tr>
+        <tr><td>3</td><td style="background:#22c55e;color:white;">Grün</td><td style="background:#92400e;color:white;">Braun</td></tr>
+        <tr><td>4</td><td style="background:#6b7280;color:white;">Grau</td><td style="background:#f472b6;color:white;">Rosa</td></tr>
+        <tr><td>5</td><td style="background:#3b82f6;color:white;">Blau</td><td style="background:#f97316;color:white;">Orange</td></tr>
+      </tbody>
+    </table>
+    
+    <h3 style="margin-top:20px;">KNX/EIB Busleitung</h3>
+    <table class="data-table">
+      <tbody>
+        <tr><td style="background:#dc2626;color:white;font-weight:bold;width:80px;">Rot</td><td><strong>+</strong> Bus positiv (EIB+)</td></tr>
+        <tr><td style="background:#1f2937;color:white;font-weight:bold;">Schwarz</td><td><strong>-</strong> Bus negativ (EIB-)</td></tr>
+        <tr><td style="background:#fbbf24;color:#333;font-weight:bold;">Gelb</td><td>Reserve / SELV+</td></tr>
+        <tr><td style="background:#fff;border:1px solid #333;font-weight:bold;">Weiß</td><td>Reserve / SELV-</td></tr>
+      </tbody>
+    </table>
+    
+    <div class="info-box" style="margin-top:20px;">
+      <h4>⚠️ Wichtig</h4>
+      <ul>
+        <li>PE (Grün-Gelb) darf <strong>NIE</strong> für andere Zwecke verwendet werden!</li>
+        <li>Bei älteren Anlagen können abweichende Farben vorkommen</li>
+        <li>Immer mit Spannungsprüfer verifizieren</li>
+      </ul>
+    </div>
+  </div>
+
   <!-- SCHUTZARTEN IP -->
   <div id="tab-schutzarten" class="tab-content">
     <h2>IP-Schutzarten nach DIN EN 60529</h2>
@@ -407,6 +413,262 @@
       </tbody>
     </table>
   </div>
+
+  <!-- FORMELN -->
+  <div id="tab-formeln" class="tab-content">
+    <h2>Wichtige Formeln</h2>
+    
+    <h3>Ohmsches Gesetz</h3>
+    <table class="data-table">
+      <tbody>
+        <tr><td><strong>U = R × I</strong></td><td>Spannung</td></tr>
+        <tr><td><strong>I = U / R</strong></td><td>Stromstärke</td></tr>
+        <tr><td><strong>R = U / I</strong></td><td>Widerstand</td></tr>
+      </tbody>
+    </table>
+    
+    <h3>Leistung</h3>
+    <table class="data-table">
+      <tbody>
+        <tr><td><strong>P = U × I</strong></td><td>Gleichstrom / Wirkleistung</td></tr>
+        <tr><td><strong>P = U × I × cos φ</strong></td><td>Wechselstrom 1~</td></tr>
+        <tr><td><strong>P = √3 × U × I × cos φ</strong></td><td>Drehstrom 3~</td></tr>
+        <tr><td><strong>S = √3 × U × I</strong></td><td>Scheinleistung Drehstrom</td></tr>
+      </tbody>
+    </table>
+    
+    <h3>Spannungsfall</h3>
+    <table class="data-table">
+      <tbody>
+        <tr><td><strong>ΔU = 2 × I × L × cos φ / (κ × A)</strong></td><td>Wechselstrom</td></tr>
+        <tr><td><strong>ΔU = √3 × I × L × cos φ / (κ × A)</strong></td><td>Drehstrom</td></tr>
+      </tbody>
+    </table>
+    <p style="color:#6b7280;font-size:13px;margin-top:10px;">κ (Kappa): Cu = 56, Al = 35 | L in m, A in mm²</p>
+    
+    <h3>Leitungsquerschnitt (Spannungsfall)</h3>
+    <table class="data-table">
+      <tbody>
+        <tr><td><strong>A = 2 × I × L × cos φ / (κ × ΔU)</strong></td><td>Wechselstrom</td></tr>
+        <tr><td><strong>A = √3 × I × L × cos φ / (κ × ΔU)</strong></td><td>Drehstrom</td></tr>
+      </tbody>
+    </table>
+    
+    <h3>Kurzschlussstrom (vereinfacht)</h3>
+    <table class="data-table">
+      <tbody>
+        <tr><td><strong>Ik = U / Zk</strong></td><td>Kurzschlussstrom</td></tr>
+        <tr><td><strong>Zk ≈ R = 2 × L / (κ × A)</strong></td><td>Schleifenimpedanz (vereinfacht)</td></tr>
+      </tbody>
+    </table>
+    
+    <div class="info-box">
+      <h4>📌 Merkwerte</h4>
+      <ul>
+        <li>cos φ Motor: 0,8 - 0,85</li>
+        <li>cos φ Heizung/Beleuchtung: 0,9 - 1,0</li>
+        <li>Max. Spannungsfall: 3% (Endstromkreis), 5% (gesamt)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ABSTÄNDE -->
+  <div id="tab-abstaende" class="tab-content">
+    <h2>Mindestabstände</h2>
+    
+    <h3>Abstände zu anderen Leitungen</h3>
+    <table class="data-table">
+      <thead>
+        <tr><th>Von</th><th>Zu</th><th>Abstand</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Elektro</td><td>Gas</td><td>≥ 200 mm</td></tr>
+        <tr><td>Elektro</td><td>Wasser (kalt)</td><td>≥ 100 mm</td></tr>
+        <tr><td>Elektro</td><td>Wasser (warm)</td><td>≥ 200 mm</td></tr>
+        <tr><td>Elektro</td><td>Heizung</td><td>≥ 100 mm</td></tr>
+        <tr><td>Starkstrom</td><td>Fernmelde</td><td>≥ 100 mm</td></tr>
+        <tr><td>Bei Kreuzung</td><td>alle Leitungen</td><td>≥ 30 mm</td></tr>
+      </tbody>
+    </table>
+    
+    <h3>Installationszonen (Wand)</h3>
+    <table class="data-table">
+      <thead>
+        <tr><th>Zone</th><th>Position</th><th>Breite</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Horizontal oben</td><td>15-45 cm unter Decke</td><td>30 cm</td></tr>
+        <tr><td>Horizontal unten</td><td>15-45 cm über Boden</td><td>30 cm</td></tr>
+        <tr><td>Horizontal Mitte</td><td>100-130 cm (Schalterhöhe)</td><td>30 cm</td></tr>
+        <tr><td>Vertikal</td><td>15 cm neben Fenster/Tür</td><td>30 cm</td></tr>
+        <tr><td>Vertikal Ecke</td><td>15 cm neben Raumecke</td><td>30 cm</td></tr>
+      </tbody>
+    </table>
+    
+    <h3>Verlegetiefe (Boden/Erdreich)</h3>
+    <table class="data-table">
+      <thead>
+        <tr><th>Ort</th><th>Mindesttiefe</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Unter Gehweg</td><td>60 cm</td></tr>
+        <tr><td>Unter Fahrbahn</td><td>80 cm</td></tr>
+        <tr><td>Unter Grünfläche</td><td>60 cm</td></tr>
+        <tr><td>Unter Acker</td><td>100 cm</td></tr>
+      </tbody>
+    </table>
+    
+    <h3>Potentialausgleich</h3>
+    <table class="data-table">
+      <thead>
+        <tr><th>Typ</th><th>Mindest-Querschnitt Cu</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Hauptpotentialausgleich</td><td>6 mm² (mind. ½ größter PE)</td></tr>
+        <tr><td>Zusätzlicher PA</td><td>4 mm² (mit mech. Schutz 2,5 mm²)</td></tr>
+        <tr><td>PA ohne Schutz (frei)</td><td>4 mm²</td></tr>
+      </tbody>
+    </table>
+    
+    <div class="info-box">
+      <h4>📌 Schutzleiter-Querschnitte</h4>
+      <table class="data-table" style="margin-top:10px">
+        <thead><tr><th>Außenleiter</th><th>PE mindestens</th></tr></thead>
+        <tbody>
+          <tr><td>≤ 16 mm²</td><td>= Außenleiter</td></tr>
+          <tr><td>16 - 35 mm²</td><td>16 mm²</td></tr>
+          <tr><td>> 35 mm²</td><td>½ Außenleiter</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- MESSUNGEN -->
+  <div id="tab-messungen" class="tab-content">
+    <h2>🔌 Elektrische Messungen</h2>
+    
+    <h3>Erstprüfung (DIN VDE 0100-600)</h3>
+    <p style="margin-bottom:15px;color:#6b7280">Vor Inbetriebnahme einer neuen Anlage</p>
+    
+    <table class="data-table">
+      <thead><tr><th>Nr.</th><th>Prüfung</th><th>Grenzwert</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><strong>Besichtigung</strong></td><td>Sichtprüfung gemäß Errichtungsnormen</td></tr>
+        <tr><td>2</td><td><strong>Durchgängigkeit Schutzleiter</strong></td><td>R < 1 Ω (Hauptleitung < 0,5 Ω)</td></tr>
+        <tr><td>3</td><td><strong>Isolationswiderstand</strong></td><td>
+          SELV/PELV: ≥ 0,5 MΩ<br>
+          bis 500V: ≥ 1,0 MΩ<br>
+          > 500V: ≥ 1,0 MΩ
+        </td></tr>
+        <tr><td>4</td><td><strong>Schutz durch SELV/PELV</strong></td><td>Trennung nachweisen</td></tr>
+        <tr><td>5</td><td><strong>Isolationswiderstand Fußboden/Wand</strong></td><td>≥ 50 kΩ (SELV) / ≥ 100 kΩ</td></tr>
+        <tr><td>6</td><td><strong>Schutz durch autom. Abschaltung</strong></td><td>RCD auslösen, Schleifenimpedanz</td></tr>
+        <tr><td>7</td><td><strong>Zusätzlicher Schutz (RCD)</strong></td><td>I∆n ≤ 30 mA in ≤ 40 ms (1×) / ≤ 200 ms (5×)</td></tr>
+        <tr><td>8</td><td><strong>Polarität</strong></td><td>L und N korrekt</td></tr>
+        <tr><td>9</td><td><strong>Phasenfolge</strong></td><td>Rechtsdrehfeld (L1-L2-L3)</td></tr>
+        <tr><td>10</td><td><strong>Funktionsprüfung</strong></td><td>Alle Schaltgeräte, RCDs etc.</td></tr>
+        <tr><td>11</td><td><strong>Spannungsfall</strong></td><td>≤ 3% (Beleuchtung) / ≤ 5% (andere)</td></tr>
+      </tbody>
+    </table>
+    
+    <h3 style="margin-top:25px">Schleifenimpedanz & Abschaltzeiten</h3>
+    <table class="data-table">
+      <thead><tr><th>Netz</th><th>Sicherung</th><th>Zs max (Ω)</th><th>Abschaltzeit</th></tr></thead>
+      <tbody>
+        <tr><td rowspan="5">TN 230V</td><td>B 10A</td><td>4,60</td><td rowspan="5">≤ 0,4 s</td></tr>
+        <tr><td>B 13A</td><td>3,54</td></tr>
+        <tr><td>B 16A</td><td>2,88</td></tr>
+        <tr><td>C 16A</td><td>1,44</td></tr>
+        <tr><td>B 20A</td><td>2,30</td></tr>
+        <tr><td rowspan="3">TN 400V</td><td>B 16A</td><td>5,00</td><td rowspan="3">≤ 0,2 s</td></tr>
+        <tr><td>B 20A</td><td>4,00</td></tr>
+        <tr><td>B 32A</td><td>2,50</td></tr>
+      </tbody>
+    </table>
+    
+    <h3 style="margin-top:25px">DGUV V3 - Ortsveränderliche Betriebsmittel</h3>
+    <p style="margin-bottom:15px;color:#6b7280">Wiederholungsprüfung nach DGUV Vorschrift 3</p>
+    
+    <table class="data-table">
+      <thead><tr><th>Prüfung</th><th>SK I</th><th>SK II</th><th>SK III</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Schutzleiterwiderstand</strong></td><td>≤ 0,3 Ω</td><td>—</td><td>—</td></tr>
+        <tr><td><strong>Isolationswiderstand</strong></td><td>≥ 1 MΩ</td><td>≥ 2 MΩ</td><td>≥ 0,25 MΩ</td></tr>
+        <tr><td><strong>Schutzleiterstrom</strong></td><td>≤ 3,5 mA</td><td>—</td><td>—</td></tr>
+        <tr><td><strong>Berührungsstrom</strong></td><td>≤ 0,5 mA</td><td>≤ 0,5 mA</td><td>—</td></tr>
+        <tr><td><strong>Ersatzableitstrom</strong></td><td>≤ 3,5 mA</td><td>≤ 0,5 mA</td><td>—</td></tr>
+      </tbody>
+    </table>
+    
+    <div class="info-box" style="margin-top:20px">
+      <h4>📌 Prüffristen DGUV V3</h4>
+      <table class="data-table" style="margin-top:10px">
+        <tr><td>Büro, ähnlich</td><td>24 Monate</td></tr>
+        <tr><td>Werkstatt, Fertigung</td><td>12 Monate</td></tr>
+        <tr><td>Baustelle</td><td>6 Monate</td></tr>
+        <tr><td>Feuchte Umgebung</td><td>6 Monate</td></tr>
+        <tr><td>Leitungen mit Stecker (Baustelle)</td><td>3 Monate</td></tr>
+      </table>
+    </div>
+    
+    <h3 style="margin-top:25px">DGUV V3 - Ortsfeste Anlagen</h3>
+    <table class="data-table">
+      <thead><tr><th>Prüfung</th><th>Grenzwert</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Isolationswiderstand</strong></td><td>≥ 1 MΩ (1000V Prüfspannung)</td></tr>
+        <tr><td><strong>Niederohmigkeit PE</strong></td><td>< 1 Ω</td></tr>
+        <tr><td><strong>Schleifenimpedanz</strong></td><td>Siehe Tabelle oben</td></tr>
+        <tr><td><strong>RCD-Prüfung</strong></td><td>Auslösezeit + Auslösestrom</td></tr>
+        <tr><td><strong>Erdungswiderstand</strong></td><td>Abhängig von Schutzmaßnahme</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:10px;font-size:12px;color:#6b7280;">Prüffrist ortsfeste Anlagen: 4 Jahre</p>
+    
+    <h3 style="margin-top:25px">Maschinenprüfung (EN 60204-1)</h3>
+    <table class="data-table">
+      <thead><tr><th>Prüfung</th><th>Anforderung</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Schutzleiterwiderstand</strong></td><td>≤ 0,1 Ω (bei ≤ 10A Prüfstrom)</td></tr>
+        <tr><td><strong>Isolationswiderstand</strong></td><td>≥ 1 MΩ (bei 500V DC)</td></tr>
+        <tr><td><strong>Spannungsprüfung</strong></td><td>2 × Un + 1000V (min 1500V) für 1s</td></tr>
+        <tr><td><strong>NOT-HALT</strong></td><td>Funktion prüfen, Kategorie</td></tr>
+        <tr><td><strong>Schutzverriegelung</strong></td><td>Türschalter, Lichtgitter</td></tr>
+      </tbody>
+    </table>
+    
+    <div class="warning" style="margin-top:20px">
+      <h4>⚠️ Prüfprotokoll</h4>
+      <ul style="margin:10px 0 0 20px">
+        <li>Messwerte dokumentieren</li>
+        <li>Messgerät mit Kalibrierung</li>
+        <li>Prüfer unterschreibt</li>
+        <li>Nächsten Prüftermin festlegen</li>
+      </ul>
+    </div>
+    
+    <h3 style="margin-top:25px">RCD-Prüfung</h3>
+    <table class="data-table">
+      <thead><tr><th>Typ</th><th>Prüfstrom</th><th>Max. Auslösezeit</th></tr></thead>
+      <tbody>
+        <tr><td rowspan="4">Typ A / AC</td><td>1× I∆n</td><td>≤ 300 ms</td></tr>
+        <tr><td>2× I∆n</td><td>≤ 150 ms</td></tr>
+        <tr><td>5× I∆n</td><td>≤ 40 ms</td></tr>
+        <tr><td>½× I∆n</td><td>Darf NICHT auslösen</td></tr>
+        <tr><td>Typ S (selektiv)</td><td>1× I∆n</td><td>130 - 500 ms</td></tr>
+      </tbody>
+    </table>
+    
+    <h3 style="margin-top:25px">Messgeräte-Anforderungen</h3>
+    <table class="data-table">
+      <tbody>
+        <tr><td>Isolationsmessung</td><td>250V / 500V / 1000V DC</td></tr>
+        <tr><td>Niederohmmessung</td><td>≥ 200 mA Prüfstrom</td></tr>
+        <tr><td>Schleifenimpedanz</td><td>Für TN/TT Netze</td></tr>
+        <tr><td>RCD-Prüfung</td><td>Strom und Zeit messend</td></tr>
+        <tr><td>Kalibrierung</td><td>Jährlich empfohlen</td></tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 
 <style>
@@ -438,6 +700,7 @@
 .zone-0 { background: #ef4444; }
 .zone-1 { background: #eab308; color: #000; }
 .zone-2 { background: #22c55e; }
+.zone-3 { background: #3b82f6; }
 
 .install-drawing {
   max-width: 450px;
